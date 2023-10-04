@@ -137,3 +137,9 @@ willSet {printf("(%s) - WILLSET_KEY_WORD\n", yytext);}
 "%" { printf("Found OPERATOR_MODULUS: %s\n", yytext); }
 
 
+"=" { printf("Found OPERATOR_EQUAL: $s\n", yytext); }
+"+=" { printf("Found OPERATOR_PLUS_EQUAL_TO: $s\n", yytext); }
+"-=" { printf("Found OPERATOR_MINUS_EQUAL_TO: $s\n", yytext); }
+"/=" { printf("Found OPERATOR_DIVIDE_EQUAL_TO: %s\n", yytext); }
+"*=" { printf("Found OPERATOR_MUTIPLY_EQUAL_TO: %s\n", yytext); }
+"%=" { printf("Found OPERATOR_MODULUS_EQUAL_TO: %s\n", yytext); }
