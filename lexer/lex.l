@@ -164,3 +164,8 @@ willSet {printf("(%s) - WILLSET_KEY_WORD\n", yytext);}
 "&&" { printf("Found OPERATOR_LOGICAL_AND: $s\n", yytext); }
 "||" { printf("Found OPERATOR_LOGICAL_OR: $s\n", yytext); }
 "!" { printf("Found OPERATOR_LOGICAL_NOT: $s\n", yytext); }
+
+// Тут регулярка для тернарного оператора
+"??" { printf("Found OPERATOR_NIL_COALESCING: $s\n", yytext); }
+"++" { printf("Found OPERATOR_INCREMENT: $s\n", yytext); }
+"--" { printf("Found OPERATOR_DECREMENT: $s\n", yytext); }
