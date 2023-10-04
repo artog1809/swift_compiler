@@ -5,6 +5,10 @@
 %x CHAR
 
 DIGIT [0-9]
+LETTER [A-Za-z]
+HEX_DIGIT [0-9A-Fa-f]
+OCT_DIGIT [0-7]
+BIN_DIGIT [01]
 
 %{
     #include <stdio.h>
