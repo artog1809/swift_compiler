@@ -151,3 +151,11 @@ willSet {printf("(%s) - WILLSET_KEY_WORD\n", yytext);}
 "|" { printf("Found OPERATOR_BINARY_OR: %s\n", yytext); }
 "^" { printf("Found OPERATOR_BINARY_XOR: %s\n", yytext); }
 "~" { printf("Found OPERATOR_TILDE: %s\n", yytext); }
+
+
+"<" { printf("Found OPERATOR_LESS: $s\n", yytext); }
+">" { printf("Found OPERATOR_GREATER: $s\n", yytext); }
+"==" { printf("Found OPERATOR_EQUAL: $s\n", yytext); }
+"<=" { printf("Found OPERATOR_LESS_OR_EQUAL: %s\n", yytext); }
+">=" { printf("Found OPERATOR_GREATER_OR_EQUAL: %s\n", yytext); }
+"!=" { printf("Found OPERATOR_NOT_EQUAL: %s\n", yytext); }
