@@ -159,3 +159,8 @@ willSet {printf("(%s) - WILLSET_KEY_WORD\n", yytext);}
 "<=" { printf("Found OPERATOR_LESS_OR_EQUAL: %s\n", yytext); }
 ">=" { printf("Found OPERATOR_GREATER_OR_EQUAL: %s\n", yytext); }
 "!=" { printf("Found OPERATOR_NOT_EQUAL: %s\n", yytext); }
+
+
+"&&" { printf("Found OPERATOR_LOGICAL_AND: $s\n", yytext); }
+"||" { printf("Found OPERATOR_LOGICAL_OR: $s\n", yytext); }
+"!" { printf("Found OPERATOR_LOGICAL_NOT: $s\n", yytext); }
