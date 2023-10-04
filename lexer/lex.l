@@ -128,3 +128,12 @@ willSet {printf("(%s) - WILLSET_KEY_WORD\n", yytext);}
 \#selector {printf("(%s) - #SELECTOR_KEY_WORD\n", yytext);}
 \#sourceLocation {printf("(%s) - #SOURCELOCATION_KEY_WORD\n", yytext);}
 \#warning {printf("(%s) - #WARNING_KEY_WORD\n", yytext);}
+
+
+"+" { printf("Found OPERATOR_PLUS: $s\n", yytext); }
+"-" { printf("Found OPERATOR_MINUS: $s\n", yytext); }
+"/" { printf("Found OPERATOR_DIVISION: $s\n", yytext); }
+"*" { printf("Found OPERATOR_MULTIPLICATION: %s\n", yytext); }
+"%" { printf("Found OPERATOR_MODULUS: %s\n", yytext); }
+
+
