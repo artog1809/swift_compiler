@@ -143,3 +143,11 @@ willSet {printf("(%s) - WILLSET_KEY_WORD\n", yytext);}
 "/=" { printf("Found OPERATOR_DIVIDE_EQUAL_TO: %s\n", yytext); }
 "*=" { printf("Found OPERATOR_MUTIPLY_EQUAL_TO: %s\n", yytext); }
 "%=" { printf("Found OPERATOR_MODULUS_EQUAL_TO: %s\n", yytext); }
+
+
+"<<" { printf("Found OPERATOR_LEFT_SHIFT: $s\n", yytext); }
+">>" { printf("Found OPERATOR_RIGHT_SHIFT: $s\n", yytext); }
+"&" { printf("Found OPERATOR_BINARY_AND: $s\n", yytext); }
+"|" { printf("Found OPERATOR_BINARY_OR: %s\n", yytext); }
+"^" { printf("Found OPERATOR_BINARY_XOR: %s\n", yytext); }
+"~" { printf("Found OPERATOR_TILDE: %s\n", yytext); }
