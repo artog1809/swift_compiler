@@ -196,6 +196,11 @@ Float { printf("Found TYPE_FLOAT: %s\n", yytext); }
 Float80 { printf("Found TYPE_FLOAT80: %s\n", yytext); }
 Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
 
+[0-9] {
+
+    printf("DECIMAL_NUMBER: %d\n", atoi(str));
+}
+
 %%
 
 void convertCharacterCodeToString(char charCode[], int pos, char *str)
