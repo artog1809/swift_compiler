@@ -201,6 +201,18 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
     printf("DECIMAL_NUMBER: %d\n", atoi(str));
 }
 
+0b[0-1]+ {
+
+    if(strlen(str) > 2)
+    {
+         printf("BIN_NUMBER: %d\n", strtol(str + 2, NULL, 2));
+    }
+    else
+    {
+       printf("Error: incorrect format\n");
+    }
+}
+
 %%
 
 void convertCharacterCodeToString(char charCode[], int pos, char *str)
