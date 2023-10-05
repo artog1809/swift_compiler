@@ -196,7 +196,7 @@ Float { printf("Found TYPE_FLOAT: %s\n", yytext); }
 Float80 { printf("Found TYPE_FLOAT80: %s\n", yytext); }
 Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
 
-[0-9] {
+[0-9]+ {
 
     printf("DECIMAL_NUMBER: %d\n", atoi(str));
 }
@@ -228,14 +228,21 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
 0x[0-9a-fA-F]+ {
 
     if(strlen(str) > 2)
-        {
-            printf("HEXADEMICAL_NUMBER: %d\n", strtol(str + 2, NULL, 2));
-        }
-        else
-        {
-            printf("Error: incorrect format for HEXADEMICAL_NUMBER\n");
-        }
+    {
+        printf("HEXADEMICAL_NUMBER: %d\n", strtol(str + 2, NULL, 2));
+    }
+    else
+    {
+        printf("Error: incorrect format for HEXADEMICAL_NUMBER\n");
+    }
 }
+
+[0-9]\.[0-9]*[eE]?[+-]?[0-9]* {
+
+    printf("DECIMAL_FLOATINGPOINT_NUMBER: %f\n", atof(str), str);
+}
+
+
 
 
 %%
