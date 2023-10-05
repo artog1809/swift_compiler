@@ -213,6 +213,18 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
     }
 }
 
+0o[0-7]+ {
+
+    if(strlen(str) > 2)
+    {
+         printf("OCTAL_NUMBER: %d\n", strtol(str + 2, NULL, 2));
+    }
+    else
+    {
+        printf("Error: incorrect format\n");
+    }
+}
+
 %%
 
 void convertCharacterCodeToString(char charCode[], int pos, char *str)
