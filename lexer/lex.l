@@ -175,3 +175,20 @@ willSet {printf("(%s) - WILLSET_KEY_WORD\n", yytext);}
 "..." { printf("Found OPERATOR_CLOSED_RANGE: $s\n", yytext); }
 "..<" { printf("Found OPERATOR_HALF_OPEN_RANGE: $s\n", yytext); }
 "[[A-Za-z0-9]...[A-Za-z0-9]?]" { printf("Found OPERATOR_ONE_SIDED_RANGE: $s\n", yytext); }
+
+Bool { printf("Found TYPE_BOOL: %s\n", yytext); }
+String { printf("Found TYPE_STRING: %s\n", yytext); }
+Character { printf("Found TYPE_CHARACTER: %s\n", yytext); }
+Int8{ printf("Found TYPE_INT8: %s\n", yytext); }
+Int16 { printf("Found TYPE_INT16: %s\n", yytext); }
+Int32 { printf("Found TYPE_INT32: %s\n", yytext); }
+Int64 { printf("Found TYPE_INT64: %s\n", yytext); }
+Int { printf("Found TYPE_INT: %s\n", yytext); }
+UInt8 { printf("Found TYPE_UINT8: %s\n", yytext); }
+UInt16 { printf("Found TYPE_UINT16: %s\n", yytext); }
+UInt32 { printf("Found TYPE_UINT32: %s\n", yytext); }
+UInt64 { printf("Found TYPE_UINT64: %s\n", yytext); }
+UInt { printf("Found TYPE_UINT: %s\n", yytext); }
+Float { printf("Found TYPE_FLOAT: %s\n", yytext); }
+Float80 { printf("Found TYPE_FLOAT80: %s\n", yytext); }
+Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
