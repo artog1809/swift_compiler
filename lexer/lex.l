@@ -242,7 +242,10 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
     printf("DECIMAL_FLOATINGPOINT_NUMBER: %f\n", atof(str), str);
 }
 
+0x[0-9a-fA-F]+\.[0-9a-fA-F]*p?[0-9]* {
 
+    printf("HEXADECIMAL_FLOATINGPOINT_NUMBER: %f\n", atof(str), str);
+}
 
 
 %%
