@@ -209,7 +209,7 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
     }
     else
     {
-       printf("Error: incorrect format\n");
+       printf("Error: incorrect format for DECIMAL_NUMBER\n");
     }
 }
 
@@ -221,9 +221,22 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
     }
     else
     {
-        printf("Error: incorrect format\n");
+        printf("Error: incorrect format for OCTAL_NUMBER\n");
     }
 }
+
+0x[0-9a-fA-F]+ {
+
+    if(strlen(str) > 2)
+        {
+            printf("HEXADEMICAL_NUMBER: %d\n", strtol(str + 2, NULL, 2));
+        }
+        else
+        {
+            printf("Error: incorrect format for HEXADEMICAL_NUMBER\n");
+        }
+}
+
 
 %%
 
