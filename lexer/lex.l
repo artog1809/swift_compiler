@@ -12,11 +12,14 @@ BIN_DIGIT [01]
 
 %{
     #include <stdio.h>
+    #include <stdlib.h>
     #include <string.h>
+    #include <ctype.h>
 %}
 
 %{
-    char bufferString[20480]; // Массив символов - буфер для строковых выражений.
+    char str[1024]; 
+    void convertCharacterCodeToString(char charCode[], int pos, char *str);
 %}
 
 %%
@@ -192,3 +195,11 @@ UInt { printf("Found TYPE_UINT: %s\n", yytext); }
 Float { printf("Found TYPE_FLOAT: %s\n", yytext); }
 Float80 { printf("Found TYPE_FLOAT80: %s\n", yytext); }
 Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
+
+%%
+
+void convertCharacterCodeToString(char charCode[], int pos, char *str)
+{
+    str[0] = strtol(charCode + pos, NULL, 16);
+    str[1] = '\0';
+}
