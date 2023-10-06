@@ -181,6 +181,7 @@ willSet {printf("(%s) - WILLSET_KEY_WORD\n", yytext);}
 Bool { printf("Found TYPE_BOOL: %s\n", yytext); }
 String { printf("Found TYPE_STRING: %s\n", yytext); }
 Character { printf("Found TYPE_CHARACTER: %s\n", yytext); }
+Int8 { printf("Found TYPE_INT8: %s\n", yytext); }
 Int16 { printf("Found TYPE_INT16: %s\n", yytext); }
 Int32 { printf("Found TYPE_INT32: %s\n", yytext); }
 Int64 { printf("Found TYPE_INT64: %s\n", yytext); }
@@ -195,6 +196,10 @@ Float80 { printf("Found TYPE_FLOAT80: %s\n", yytext); }
 Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
 
 
+
+[0-9]+ {
+    printf("DECIMAL_NUMBER: %d\n", atoi(str));
+}
 
 0b[0-1]+ {
 
