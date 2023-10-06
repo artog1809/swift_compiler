@@ -255,3 +255,26 @@ void convertCharacterCodeToString(char charCode[], int pos, char *str)
     str[0] = strtol(charCode + pos, NULL, 16);
     str[1] = '\0';
 }
+
+int main( int argc, char** argv)
+{
+    if (argc == 2)
+    {
+        FILE *file = fopen(argv[1], "r");
+        if (file == NULL) 
+        {
+            printf("File opening error");
+            return 1;
+        }
+        yyin = file;
+        yylex();
+        fclose(file);
+
+    return 0;
+    }
+    else
+    {
+        printf("missed commandline argument");
+        return 1;
+    }
+}
