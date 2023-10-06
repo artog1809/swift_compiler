@@ -221,20 +221,21 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
 <STRING>\\\' { strcat(str, "\'"); }
 <STRING>\\\" { strcat(str, "\""); }
 <STRING>\\u\{(({HEX_DIGIT}){5})\} { // Проверить
-    int x = strtol(yytext + 3, NULL, 16);
+    char *a;
+    int x = strtol(yytext + 3, &a, 16);
     if (x <= 127) {
-        char tmp[2];
-        tmp[0] = x;
-        tmp[1] = 0;
-        strcat(str, tmp);
+        char buf[2];
+        buf[0] = x;
+        buf[1] = 0;
+        strcat(str, buf);
     } else {
-        printf("STRING ERROR in line %d: Char unicode does not supported\n", lineNumber);
+        printf("Eror in %d: unicode not supported\n", lineNumber);
     }
  } 
 <STRING> // Здесь будет интерполяция строки {}
-<STRING>\" { printf("Found STRING: %s\n", yytext); BEGIN(INITIAL); }
-<STRING>\\{?! \(} { printf("STRING ERROR in line %d: unterminated string literal\n", lineNumber); BEGIN(INITIAL); }
-<STRING><<EOF>> { printf("STRING ERROR in line %d: there is no closing quotation mark\n", lineNumber); BEGIN(INITIAL); }
+<STRING>\" { printf("STRING: %s\n", yytext); BEGIN(INITIAL); }
+<STRING>\\{?! \(} { printf("Error in %d: unterminated string literal\n", lineNumber); BEGIN(INITIAL); }
+<STRING><<EOF>> { printf("Error in %d:  no closing quotation mark\n", lineNumber); BEGIN(INITIAL); }
 
 [0-9]+ {
     printf("DECIMAL_NUMBER: %d\n", atoi(str));
