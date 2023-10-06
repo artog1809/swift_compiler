@@ -6,7 +6,7 @@
 %x CHAR
 
 DIGIT [0-9]
-LETTER [A-Za-z]
+LETTER [A-Za-z] // Доюавляем нижнее подчеркивание
 HEX_DIGIT [0-9A-Fa-f]
 OCT_DIGIT [0-7]
 BIN_DIGIT [01]
@@ -19,13 +19,15 @@ BIN_DIGIT [01]
 %}
 
 %{
-    char str[1024]; 
-    int lineNumber = 1;
+    char str[1024]; // Сделать лоакльной переменной
+    int lineNumber = 1; // Сделать локальной переменной
     void convertCharacterCodeToString(char charCode[], int pos, char *str);
     void removeChar(const char * str, char * dest, char deletedChar);
 %}
 
 %%
+\n { lineNumber++; }
+[ \t]+ { }
 
 associatedtype {printf("(%s) - ASSOCIATEDTYPE_KEY_WORD\n", yytext);}
 class {printf("(%s) - CLASS_KEY_WORD\n", yytext);}
@@ -136,50 +138,60 @@ willSet {printf("(%s) - WILLSET_KEY_WORD\n", yytext);}
 \#warning {printf("(%s) - #WARNING_KEY_WORD\n", yytext);}
 
 
-"+" { printf("Found OPERATOR_PLUS: $s\n", yytext); }
-"-" { printf("Found OPERATOR_MINUS: $s\n", yytext); }
-"/" { printf("Found OPERATOR_DIVISION: $s\n", yytext); }
+"+" { printf("Found OPERATOR_PLUS: %s\n", yytext); }
+"-" { printf("Found OPERATOR_MINUS: %s\n", yytext); }
+"/" { printf("Found OPERATOR_DIVISION: %s\n", yytext); }
 "*" { printf("Found OPERATOR_MULTIPLICATION: %s\n", yytext); }
 "%" { printf("Found OPERATOR_MODULUS: %s\n", yytext); }
 
 
-"=" { printf("Found OPERATOR_ASSIGNMENT: $s\n", yytext); }
-"+=" { printf("Found OPERATOR_PLUS_ASSIGNMENT: $s\n", yytext); }
-"-=" { printf("Found OPERATOR_MINUS_ASSIGNMENT: $s\n", yytext); }
+"=" { printf("Found OPERATOR_ASSIGNMENT: %s\n", yytext); }
+"+=" { printf("Found OPERATOR_PLUS_ASSIGNMENT: %s\n", yytext); }
+"-=" { printf("Found OPERATOR_MINUS_ASSIGNMENT: %s\n", yytext); }
 "/=" { printf("Found OPERATOR_DIVIDE_ASSIGNMENT: %s\n", yytext); }
 "*=" { printf("Found OPERATOR_MUTIPLY_ASSIGNMENT: %s\n", yytext); }
 "%=" { printf("Found OPERATOR_MODULUS_ASSIGNMENT: %s\n", yytext); }
 
 
-"<<" { printf("Found OPERATOR_LEFT_SHIFT: $s\n", yytext); }
-">>" { printf("Found OPERATOR_RIGHT_SHIFT: $s\n", yytext); }
-"&" { printf("Found OPERATOR_BINARY_AND: $s\n", yytext); }
+"<<" { printf("Found OPERATOR_LEFT_SHIFT: %s\n", yytext); }
+">>" { printf("Found OPERATOR_RIGHT_SHIFT: %s\n", yytext); }
+"&" { printf("Found OPERATOR_BINARY_AND: %s\n", yytext); }
 "|" { printf("Found OPERATOR_BINARY_OR: %s\n", yytext); }
 "^" { printf("Found OPERATOR_BINARY_XOR: %s\n", yytext); }
 "~" { printf("Found OPERATOR_TILDE: %s\n", yytext); }
 
 
-"<" { printf("Found OPERATOR_LESS: $s\n", yytext); }
-">" { printf("Found OPERATOR_GREATER: $s\n", yytext); }
-"==" { printf("Found OPERATOR_EQUAL: $s\n", yytext); }
+"<" { printf("Found OPERATOR_LESS: %s\n", yytext); }
+">" { printf("Found OPERATOR_GREATER: %s\n", yytext); }
+"==" { printf("Found OPERATOR_EQUAL: %s\n", yytext); }
 "<=" { printf("Found OPERATOR_LESS_OR_EQUAL: %s\n", yytext); }
 ">=" { printf("Found OPERATOR_GREATER_OR_EQUAL: %s\n", yytext); }
 "!=" { printf("Found OPERATOR_NOT_EQUAL: %s\n", yytext); }
 
 
-"&&" { printf("Found OPERATOR_LOGICAL_AND: $s\n", yytext); }
-"||" { printf("Found OPERATOR_LOGICAL_OR: $s\n", yytext); }
-"!" { printf("Found OPERATOR_LOGICAL_NOT: $s\n", yytext); }
+"&&" { printf("Found OPERATOR_LOGICAL_AND: %s\n", yytext); }
+"||" { printf("Found OPERATOR_LOGICAL_OR: %s\n", yytext); }
+"!" { printf("Found OPERATOR_LOGICAL_NOT: %s\n", yytext); }
 
 
-"??" { printf("Found OPERATOR_NIL_COALESCING: $s\n", yytext); }
-"++" { printf("Found OPERATOR_INCREMENT: $s\n", yytext); }
-"--" { printf("Found OPERATOR_DECREMENT: $s\n", yytext); }
+"??" { printf("Found OPERATOR_NIL_COALESCING: %s\n", yytext); }
+"++" { printf("Found OPERATOR_INCREMENT: %s\n", yytext); }
+"--" { printf("Found OPERATOR_DECREMENT: %s\n", yytext); }
 
 
-"..." { printf("Found OPERATOR_CLOSED_RANGE: $s\n", yytext); }
-"..<" { printf("Found OPERATOR_HALF_OPEN_RANGE: $s\n", yytext); }
-"[[A-Za-z0-9]...[A-Za-z0-9]?]" { printf("Found OPERATOR_ONE_SIDED_RANGE: $s\n", yytext); }
+"." { printf("Found OPERATOR_POINT: %s\n", yytext); }
+"..." { printf("Found OPERATOR_CLOSED_RANGE: %s\n", yytext); }
+"..<" { printf("Found OPERATOR_HALF_OPEN_RANGE: %s\n", yytext); }
+"[[A-Za-z0-9]...[A-Za-z0-9]?]" { printf("Found OPERATOR_ONE_SIDED_RANGE: %s\n", yytext); } // Зачем неужны ковычки в регулярках, во флекс, именно тут убрать
+
+":" { printf("Found OPERATOR_COLON: %s\n", yyt); }
+
+"(" { printf("Found LEFT_ROUND_BRACKET: %s\n", yytext); }
+")" { printf("Found RIGHT_ROUND_BRACKET: %s\n", yytext); }
+"[" { printf("Found LEFT_SQUARE_BRACKET: %s\n", yytext); }
+"]" { printf("Found RIGHT_SQUARE_BRACKET: %s\n", yytext); }
+"{" { printf("Found LEFT_FIGURE_BRACKET: %s\n", yytext); }
+"}" { printf("Found RIGHT_FIGURE_BRACKET: %s\n", yytext); }
 
 Bool { printf("Found TYPE_BOOL: %s\n", yytext); }
 String { printf("Found TYPE_STRING: %s\n", yytext); }
@@ -202,17 +214,17 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
 <MULTILINE_COMMENT>[^*\n]* { strcat(str, yytext); }
 <MULTILINE_COMMENT>\n { lineNumber++; }
 <MULTILINE_COMMENT>"*"+[^/]* { strcat(str, yytext); }
-<MULTILINE_COMMENT>"*"+"/" { printf("Found MULTILINE_COMMENT: %s\n", yytext); BEGIN(INITIAL); }
+<MULTILINE_COMMENT>"*"+"/" { printf("Found MULTILINE_COMMENT: %s\n", str); BEGIN(INITIAL); }
 <MULTILINE_COMMENT><<EOF>> { printf("MULTILINE_COMMENT ERROR in line %d: comment are not closed\n"); BEGIN(INITIAL); }
 
-\/\/[^\n]* { printf("Found ONELINE_COMMENT: %s\n", yytext); }
+\/\/[^\n]* { printf("Found ONELINE_COMMENT: %s\n", yytext); } // [^\n] поменять на точку (проверить)?
 
 \" { strcpy(str, ""); BEGIN(STRING); }
 <STRING>[^\\\"\n]+ { strcat(str, yytext); }
 <STRING>\n { lineNumber++; }
 <STRING>\\n { strcat(str, "\n"); }
 <STRING>\\b { strcat(str, "\b"); }
-<STRING>\\0 { strcat(str, "\0"); }
+<STRING>\\0 { strcat(str, "\0"); } // Разобраться с нулевым символом! (убрать тут)
 <STRING>\\\\ { strcat(str, "\\"); }
 <STRING>\\f { strcat(str, "\f"); }
 <STRING>\\r { strcat(str, "\r"); }
@@ -232,20 +244,21 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
         printf("Eror in %d: unicode not supported\n", lineNumber);
     }
  } 
-<STRING> // Здесь будет интерполяция строки {}
-<STRING>\" { printf("STRING: %s\n", yytext); BEGIN(INITIAL); }
-<STRING>\\{?! \(} { printf("Error in %d: unterminated string literal\n", lineNumber); BEGIN(INITIAL); }
+<STRING>\" { printf("STRING: %s\n", str); BEGIN(INITIAL); }
+<STRING>\\[^(] { printf("Error in %d: unterminated string literal\n", lineNumber); BEGIN(INITIAL); } // Хорошо подумать над реализацией интерполяцией в строке (подменна переменной)! Нужно использовать какое-то подвыражение)))
 <STRING><<EOF>> { printf("Error in %d:  no closing quotation mark\n", lineNumber); BEGIN(INITIAL); }
 
-[0-9]+ {
-    printf("DECIMAL_NUMBER: %d\n", atoi(str));
+[0-9][_0-9]* {
+	removeChar(yytext, str, '_');
+	printf("DECIMAL_NUMBER: %d\n", atoi(str));
 }
 
-0b[0-1]+ {
+0b[_0-1]+ {
 
-    if(strlen(str) > 2)
+    if(strlen(yytext) > 2)
     {
-         printf("BIN_NUMBER: %d\n", strtol(str + 2, NULL, 2));
+		removeChar(yytext, str, '_');
+        printf("BIN_NUMBER: %d\n", strtol(str + 2, NULL, 2));
     }
     else
     {
@@ -253,11 +266,12 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
     }
 }
 
-0o[0-7]+ {
+0o[_0-7]+ {
 
-    if(strlen(str) > 2)
+    if(strlen(yytext) > 2)
     {
-         printf("OCTAL_NUMBER: %d\n", strtol(str + 2, NULL, 2));
+		removeChar(yytext, str, '_');
+        printf("OCTAL_NUMBER: %d\n", strtol(str + 2, NULL, 8));
     }
     else
     {
@@ -265,11 +279,12 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
     }
 }
 
-0x[0-9a-fA-F]+ {
+0x[_0-9a-fA-F]+ {
 
-    if(strlen(str) > 2)
+    if(strlen(yytext) > 2)
     {
-        printf("HEXADEMICAL_NUMBER: %d\n", strtol(str + 2, NULL, 2));
+		removeChar(yytext, str, '_');
+        printf("HEXADEMICAL_NUMBER: %d\n", strtol(str + 2, NULL, 16));
     }
     else
     {
@@ -277,17 +292,17 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
     }
 }
 
-[0-9]\.[0-9]*[eE]?[+-]?[0-9]* {
-
-    printf("DECIMAL_FLOATINGPOINT_NUMBER: %f\n", atof(str), str);
+[0-9]\.[_0-9]*[eE]?[+-]?[_0-9]* { // Добавить плюс к первой части числа и исправить звездочку, а вообще перепроверить регулярку (поиграться со Swift)
+	removeChar(yytext, str, '_');
+    printf("DECIMAL_FLOATINGPOINT_NUMBER: %f\n", atof(str));
 }
 
-0x[0-9a-fA-F]+\.[0-9a-fA-F]*p?[0-9]* {
-
-    printf("HEXADECIMAL_FLOATINGPOINT_NUMBER: %f\n", atof(str), str);
+0x[_0-9a-fA-F]+\.[_0-9a-fA-F]*p?[_0-9]* { // Смотри выше 
+	removeChar(yytext, str, '_');
+    printf("HEXADECIMAL_FLOATINGPOINT_NUMBER: %f\n", atof(str));
 }
 
-
+{LETTER}({LETTER}|{DIGIT}|_)* { printf("Found IDENTIFIER: %s\n", yytext); }
 %%
 
 void convertCharacterCodeToString(char charCode[], int pos, char *str)
@@ -300,13 +315,13 @@ void removeChar(const char * str, char * dest, char deletedChar)
 {
     int j = 0;
 
-    for (int i = 0; str[i] != 0; i++) {
+    for (int i = 0; i < strlen(yytext); i++) {
         if (str[i] != deletedChar) {
             dest[j++] = str[i];
         }
     }
 
-    dest[j] = 0;
+    dest[j] = '\0';
 }
 
 int main( int argc, char** argv)
