@@ -1,6 +1,7 @@
 %option noyywrap
 %option never-interactive
 
+%x MULTILINE_COMMENT
 %x STRING
 %x CHAR
 
@@ -19,7 +20,9 @@ BIN_DIGIT [01]
 
 %{
     char str[1024]; 
+    int lineNumber = 1;
     void convertCharacterCodeToString(char charCode[], int pos, char *str);
+    void removeChar(const char * str, char * dest, char deletedChar);
 %}
 
 %%
@@ -169,7 +172,6 @@ willSet {printf("(%s) - WILLSET_KEY_WORD\n", yytext);}
 "!" { printf("Found OPERATOR_LOGICAL_NOT: $s\n", yytext); }
 
 
-// Тут регулярка для тернарного оператора
 "??" { printf("Found OPERATOR_NIL_COALESCING: $s\n", yytext); }
 "++" { printf("Found OPERATOR_INCREMENT: $s\n", yytext); }
 "--" { printf("Found OPERATOR_DECREMENT: $s\n", yytext); }
@@ -182,7 +184,7 @@ willSet {printf("(%s) - WILLSET_KEY_WORD\n", yytext);}
 Bool { printf("Found TYPE_BOOL: %s\n", yytext); }
 String { printf("Found TYPE_STRING: %s\n", yytext); }
 Character { printf("Found TYPE_CHARACTER: %s\n", yytext); }
-Int8{ printf("Found TYPE_INT8: %s\n", yytext); }
+Int8 { printf("Found TYPE_INT8: %s\n", yytext); }
 Int16 { printf("Found TYPE_INT16: %s\n", yytext); }
 Int32 { printf("Found TYPE_INT32: %s\n", yytext); }
 Int64 { printf("Found TYPE_INT64: %s\n", yytext); }
@@ -196,8 +198,45 @@ Float { printf("Found TYPE_FLOAT: %s\n", yytext); }
 Float80 { printf("Found TYPE_FLOAT80: %s\n", yytext); }
 Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
 
-[0-9]+ {
+"/*" {strcpy(str, ""); BEGIN(MULTILINE_COMMENT);}
+<MULTILINE_COMMENT>[^*\n]* { strcat(str, yytext); }
+<MULTILINE_COMMENT>\n { lineNumber++; }
+<MULTILINE_COMMENT>"*"+[^/]* { strcat(str, yytext); }
+<MULTILINE_COMMENT>"*"+"/" { printf("Found MULTILINE_COMMENT: %s\n", yytext); BEGIN(INITIAL); }
+<MULTILINE_COMMENT><<EOF>> { printf("MULTILINE_COMMENT ERROR in line %d: comment are not closed\n"); BEGIN(INITIAL); }
 
+\/\/[^\n]* { printf("Found ONELINE_COMMENT: %s\n", yytext); }
+
+\" { strcpy(str, ""); BEGIN(STRING); }
+<STRING>[^\\\"\n]+ { strcat(str, yytext); }
+<STRING>\n { lineNumber++; }
+<STRING>\\n { strcat(str, "\n"); }
+<STRING>\\b { strcat(str, "\b"); }
+<STRING>\\0 { strcat(str, "\0"); }
+<STRING>\\\\ { strcat(str, "\\"); }
+<STRING>\\f { strcat(str, "\f"); }
+<STRING>\\r { strcat(str, "\r"); }
+<STRING>\\t { strcat(str, "\t"); }
+<STRING>\\v { strcat(str, "\v"); }
+<STRING>\\\' { strcat(str, "\'"); }
+<STRING>\\\" { strcat(str, "\""); }
+<STRING>\\u\{(({HEX_DIGIT}){5})\} { // Проверить
+    int x = strtol(yytext + 3, NULL, 16);
+    if (x <= 127) {
+        char tmp[2];
+        tmp[0] = x;
+        tmp[1] = 0;
+        strcat(str, tmp);
+    } else {
+        printf("STRING ERROR in line %d: Char unicode does not supported\n", lineNumber);
+    }
+ } 
+<STRING> // Здесь будет интерполяция строки {}
+<STRING>\" { printf("Found STRING: %s\n", yytext); BEGIN(INITIAL); }
+<STRING>\\{?! \(} { printf("STRING ERROR in line %d: unterminated string literal\n", lineNumber); BEGIN(INITIAL); }
+<STRING><<EOF>> { printf("STRING ERROR in line %d: there is no closing quotation mark\n", lineNumber); BEGIN(INITIAL); }
+
+[0-9]+ {
     printf("DECIMAL_NUMBER: %d\n", atoi(str));
 }
 
@@ -254,4 +293,39 @@ void convertCharacterCodeToString(char charCode[], int pos, char *str)
 {
     str[0] = strtol(charCode + pos, NULL, 16);
     str[1] = '\0';
+}
+
+void removeChar(const char * str, char * dest, char deletedChar) 
+{
+    int j = 0;
+
+    for (int i = 0; str[i] != 0; i++) {
+        if (str[i] != deletedChar) {
+            dest[j++] = str[i];
+        }
+    }
+
+    dest[j] = 0;
+}
+
+int main( int argc, char** argv)
+{
+    if (argc == 2)
+    {
+        FILE *file = fopen(argv[1], "r");
+        if (file == NULL) 
+        {
+            printf("File opening error");
+            return 1;
+        }
+        yyin = file;
+        yylex();
+        fclose(file);
+        return 0;
+    }
+    else
+    {
+        printf("missed commandline argument");
+        return 1;
+    }
 }
