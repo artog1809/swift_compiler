@@ -1,6 +1,7 @@
 %option noyywrap
 %option never-interactive
 
+%x MULTILINE_COMMENT
 %x STRING
 %x CHAR
 
@@ -19,6 +20,7 @@ BIN_DIGIT [01]
 
 %{
     char str[1024]; 
+    int lineNumber = 1;
     void convertCharacterCodeToString(char charCode[], int pos, char *str);
 %}
 
@@ -194,6 +196,13 @@ UInt { printf("Found TYPE_UINT: %s\n", yytext); }
 Float { printf("Found TYPE_FLOAT: %s\n", yytext); }
 Float80 { printf("Found TYPE_FLOAT80: %s\n", yytext); }
 Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
+
+"/*" {strcpy(str, ""); BEGIN(MULTILINE_COMMENT);}
+<MULTILINE_COMMENT>[^*\n]* { strcat(str, yytext); }
+<MULTILINE_COMMENT>\n { lineNumber++; }
+<MULTILINE_COMMENT>"*"+[^/]* { strcat(str, yytext); }
+<MULTILINE_COMMENT>"*"+"/" { printf(Found MULTILINE_COMMENT: %s\n, yytext); BEGIN(INITIAL); }
+<MULTILINE_COMMENT><<EOF>> { printf(Error in line %d: MULTILINE_COMMENT are not closed); BEGIN(INITIAL); }
 
 
 
