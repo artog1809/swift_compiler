@@ -22,6 +22,7 @@ BIN_DIGIT [01]
     char str[1024]; 
     int lineNumber = 1;
     void convertCharacterCodeToString(char charCode[], int pos, char *str);
+    void removeChar(const char * str, char * dest, char deletedChar);
 %}
 
 %%
@@ -263,6 +264,19 @@ void convertCharacterCodeToString(char charCode[], int pos, char *str)
 {
     str[0] = strtol(charCode + pos, NULL, 16);
     str[1] = '\0';
+}
+
+void removeChar(const char * str, char * dest, char deletedChar) 
+{
+    int j = 0;
+
+    for (int i = 0; str[i] != 0; i++) {
+        if (str[i] != deletedChar) {
+            dest[j++] = str[i];
+        }
+    }
+
+    dest[j] = 0;
 }
 
 int main( int argc, char** argv)
