@@ -202,10 +202,39 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
 <MULTILINE_COMMENT>[^*\n]* { strcat(str, yytext); }
 <MULTILINE_COMMENT>\n { lineNumber++; }
 <MULTILINE_COMMENT>"*"+[^/]* { strcat(str, yytext); }
-<MULTILINE_COMMENT>"*"+"/" { printf(Found MULTILINE_COMMENT: %s\n, yytext); BEGIN(INITIAL); }
-<MULTILINE_COMMENT><<EOF>> { printf(Error in line %d: MULTILINE_COMMENT are not closed); BEGIN(INITIAL); }
+<MULTILINE_COMMENT>"*"+"/" { printf("Found MULTILINE_COMMENT: %s\n", yytext); BEGIN(INITIAL); }
+<MULTILINE_COMMENT><<EOF>> { printf("MULTILINE_COMMENT ERROR in line %d: comment are not closed\n"); BEGIN(INITIAL); }
 
 \/\/[^\n]* { printf("Found ONELINE_COMMENT: %s\n", yytext); }
+
+\" { strcpy(str, ""); BEGIN(STRING); }
+<STRING>[^\\\"\n]+ { strcat(str, yytext); }
+<STRING>\n { lineNumber++; }
+<STRING>\\n { strcat(str, "\n"); }
+<STRING>\\b { strcat(str, "\b"); }
+<STRING>\\0 { strcat(str, "\0"); }
+<STRING>\\\\ { strcat(str, "\\"); }
+<STRING>\\f { strcat(str, "\f"); }
+<STRING>\\r { strcat(str, "\r"); }
+<STRING>\\t { strcat(str, "\t"); }
+<STRING>\\v { strcat(str, "\v"); }
+<STRING>\\\' { strcat(str, "\'"); }
+<STRING>\\\" { strcat(str, "\""); }
+<STRING>\\u\{(({HEX_DIGIT}){5})\} { // Проверить
+    int x = strtol(yytext + 3, NULL, 16);
+    if (x <= 127) {
+        char tmp[2];
+        tmp[0] = x;
+        tmp[1] = 0;
+        strcat(str, tmp);
+    } else {
+        printf("STRING ERROR in line %d: Char unicode does not supported\n", lineNumber);
+    }
+ } 
+<STRING> // Здесь будет интерполяция строки {}
+<STRING>\" { printf("Found STRING: %s\n", yytext); BEGIN(INITIAL); }
+<STRING>\\{?! \(} { printf("STRING ERROR in line %d: unterminated string literal\n", lineNumber); BEGIN(INITIAL); }
+<STRING><<EOF>> { printf("STRING ERROR in line %d: there is no closing quotation mark\n", lineNumber); BEGIN(INITIAL); }
 
 [0-9]+ {
     printf("DECIMAL_NUMBER: %d\n", atoi(str));
