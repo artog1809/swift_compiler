@@ -204,7 +204,7 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
 <MULTILINE_COMMENT>"*"+"/" { printf(Found MULTILINE_COMMENT: %s\n, yytext); BEGIN(INITIAL); }
 <MULTILINE_COMMENT><<EOF>> { printf(Error in line %d: MULTILINE_COMMENT are not closed); BEGIN(INITIAL); }
 
-
+\/\/[^\n]* { printf("Found ONELINE_COMMENT: %s\n", yytext); }
 
 [0-9]+ {
     printf("DECIMAL_NUMBER: %d\n", atoi(str));
