@@ -182,7 +182,7 @@ willSet {printf("(%s) - WILLSET_KEY_WORD\n", yytext);}
 "." { printf("Found OPERATOR_POINT: %s\n", yytext); }
 "..." { printf("Found OPERATOR_CLOSED_RANGE: %s\n", yytext); }
 "..<" { printf("Found OPERATOR_HALF_OPEN_RANGE: %s\n", yytext); }
-"[[A-Za-z0-9]...[A-Za-z0-9]?]" { printf("Found OPERATOR_ONE_SIDED_RANGE: %s\n", yytext); } // Зачем неужны ковычки в регулярках, во флекс, именно тут убрать
+[[A-Za-z0-9]...[A-Za-z0-9]?] { printf("Found OPERATOR_ONE_SIDED_RANGE: %s\n", yytext); } // Зачем неужны ковычки в регулярках, во флекс, именно тут убрать
 
 ":" { printf("Found OPERATOR_COLON: %s\n", yyt); }
 
