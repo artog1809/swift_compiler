@@ -19,13 +19,13 @@ BIN_DIGIT [01]
 %}
 
 %{
-    char str[1024]; // Сделать лоакльной переменной
-    int lineNumber = 1; // Сделать локальной переменной
     void convertCharacterCodeToString(char charCode[], int pos, char *str);
     void removeChar(const char * str, char * dest, char deletedChar);
 %}
 
 %%
+char str[1024]; // Сделать лоакльной переменной
+int lineNumber = 1; // Сделать локальной переменной
 \n { lineNumber++; }
 [ \t]+ { }
 
