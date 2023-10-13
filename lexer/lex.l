@@ -217,7 +217,7 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
 <MULTILINE_COMMENT>"*"+"/" { printf("Found MULTILINE_COMMENT: %s\n", str); BEGIN(INITIAL); }
 <MULTILINE_COMMENT><<EOF>> { printf("MULTILINE_COMMENT ERROR in line %d: comment are not closed\n"); BEGIN(INITIAL); }
 
-\/\/[^\n]* { printf("Found ONELINE_COMMENT: %s\n", yytext); } // [^\n] поменять на точку (проверить)?
+\/\/[.]* { printf("Found ONELINE_COMMENT: %s\n", yytext); } // [^\n] поменять на точку (проверить)?
 
 \" { strcpy(str, ""); BEGIN(STRING); }
 <STRING>[^\\\"\n]+ { strcat(str, yytext); }
