@@ -15,20 +15,28 @@ BIN_DIGIT [01]
     #include <stdio.h>
     #include <stdlib.h>
     #include <string.h>
+    #include <iostream>
+    #include <string>
     #include <ctype.h>
+    using namespace std;
 %}
+
+%%
 
 %{
     void convertCharacterCodeToString(char charCode[], int pos, char *str);
     void removeChar(const char * str, char * dest, char deletedChar);
+	
+	
+	char str[1024];
+	string stdstr = "";
+	int lineNumber = 1;  
+	
 %}
 
-%%
-char str[1024];
-string stdstr = "";
-int lineNumber = 1;  
 \n { lineNumber++; }
 [ \t]+ { }
+
 
 associatedtype {printf("(%s) - ASSOCIATEDTYPE_KEY_WORD\n", yytext);}
 class {printf("(%s) - CLASS_KEY_WORD\n", yytext);}
@@ -185,7 +193,7 @@ willSet {printf("(%s) - WILLSET_KEY_WORD\n", yytext);}
 "..<" { printf("Found OPERATOR_HALF_OPEN_RANGE: %s\n", yytext); }
 [[A-Za-z0-9]...[A-Za-z0-9]?] { printf("Found OPERATOR_ONE_SIDED_RANGE: %s\n", yytext); } 
 
-":" { printf("Found OPERATOR_COLON: %s\n", yyt); }
+":" { printf("Found OPERATOR_COLON: %s\n", yytext); }
 
 "(" { printf("Found LEFT_ROUND_BRACKET: %s\n", yytext); }
 ")" { printf("Found RIGHT_ROUND_BRACKET: %s\n", yytext); }
@@ -231,7 +239,7 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
 <STRING>\\r  { stdstr += "\r"; }
 <STRING>\\t  { stdstr += "\t"; }
 <STRING>\\v { stdstr += "\v"; }
-<STRING>\\\' { stdstr += "\'"); }
+<STRING>\\\' { stdstr += "\'"; }
 <STRING>\\\" { stdstr += "\""; }
 <STRING>\\u\{(({HEX_DIGIT}){5})\} {
     char *a;
@@ -245,7 +253,7 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
         printf("Eror in %d: unicode not supported\n", lineNumber);
     }
  } 
-<STRING>\" { printf("STRING: %s\n", str); BEGIN(INITIAL); }
+<STRING>\" { std::cout << "STRING: " << stdstr << std::endl; BEGIN(INITIAL); }
 <STRING><<EOF>> { printf("Error in %d:  no closing quotation mark\n", lineNumber); BEGIN(INITIAL); }
 
 [0-9][_0-9]* {
