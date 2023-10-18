@@ -24,8 +24,9 @@ BIN_DIGIT [01]
 %}
 
 %%
-char str[1024]; // Сделать лоакльной переменной
-int lineNumber = 1; // Сделать локальной переменной
+char str[1024];
+string stdstr = "";
+int lineNumber = 1;  
 \n { lineNumber++; }
 [ \t]+ { }
 
@@ -182,7 +183,7 @@ willSet {printf("(%s) - WILLSET_KEY_WORD\n", yytext);}
 "." { printf("Found OPERATOR_POINT: %s\n", yytext); }
 "..." { printf("Found OPERATOR_CLOSED_RANGE: %s\n", yytext); }
 "..<" { printf("Found OPERATOR_HALF_OPEN_RANGE: %s\n", yytext); }
-[[A-Za-z0-9]...[A-Za-z0-9]?] { printf("Found OPERATOR_ONE_SIDED_RANGE: %s\n", yytext); } // Зачем неужны ковычки в регулярках, во флекс, именно тут убрать
+[[A-Za-z0-9]...[A-Za-z0-9]?] { printf("Found OPERATOR_ONE_SIDED_RANGE: %s\n", yytext); } 
 
 ":" { printf("Found OPERATOR_COLON: %s\n", yyt); }
 
@@ -217,35 +218,34 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
 <MULTILINE_COMMENT>"*"+"/" { printf("Found MULTILINE_COMMENT: %s\n", str); BEGIN(INITIAL); }
 <MULTILINE_COMMENT><<EOF>> { printf("MULTILINE_COMMENT ERROR in line %d: comment are not closed\n"); BEGIN(INITIAL); }
 
-\/\/[.]* { printf("Found ONELINE_COMMENT: %s\n", yytext); } // [^\n] поменять на точку (проверить)?
+\/\/[.]* { printf("Found ONELINE_COMMENT: %s\n", yytext); }
 
-\" { strcpy(str, ""); BEGIN(STRING); }
-<STRING>[^\\\"\n]+ { strcat(str, yytext); }
+\" { stdstr = ""; BEGIN(STRING); }
+<STRING>[^\\\"\n]+ { stdstr += yytext; }
 <STRING>\n { lineNumber++; }
-<STRING>\\n { strcat(str, "\n"); }
-<STRING>\\b { strcat(str, "\b"); }
-<STRING>\\0 { strcat(str, "\0"); } // Разобраться с нулевым символом! (убрать тут)
-<STRING>\\\\ { strcat(str, "\\"); }
-<STRING>\\f { strcat(str, "\f"); }
-<STRING>\\r { strcat(str, "\r"); }
-<STRING>\\t { strcat(str, "\t"); }
-<STRING>\\v { strcat(str, "\v"); }
-<STRING>\\\' { strcat(str, "\'"); }
-<STRING>\\\" { strcat(str, "\""); }
-<STRING>\\u\{(({HEX_DIGIT}){5})\} { // Проверить
+<STRING>\\n  { stdstr += "\n"; }
+<STRING>\\b { stdstr += "\b"; }
+<STRING>\\0  { stdstr += "\0"; }
+<STRING>\\\\ { stdstr += "\\"; }
+<STRING>\\f { stdstr += "\f"; }
+<STRING>\\r  { stdstr += "\r"; }
+<STRING>\\t  { stdstr += "\t"; }
+<STRING>\\v { stdstr += "\v"; }
+<STRING>\\\' { stdstr += "\'"); }
+<STRING>\\\" { stdstr += "\""; }
+<STRING>\\u\{(({HEX_DIGIT}){5})\} {
     char *a;
     int x = strtol(yytext + 3, &a, 16);
     if (x <= 127) {
         char buf[2];
         buf[0] = x;
         buf[1] = 0;
-        strcat(str, buf);
+		stdstr += buf;
     } else {
         printf("Eror in %d: unicode not supported\n", lineNumber);
     }
  } 
 <STRING>\" { printf("STRING: %s\n", str); BEGIN(INITIAL); }
-<STRING>\\[^(] { printf("Error in %d: unterminated string literal\n", lineNumber); BEGIN(INITIAL); } // Хорошо подумать над реализацией интерполяцией в строке (подменна переменной)! Нужно использовать какое-то подвыражение)))
 <STRING><<EOF>> { printf("Error in %d:  no closing quotation mark\n", lineNumber); BEGIN(INITIAL); }
 
 [0-9][_0-9]* {
