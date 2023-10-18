@@ -26,6 +26,92 @@
 		let hexExp2 = 0x0_1.0_4p0_3
 		
 
-		let x = 1
+		let x = 2
+		let dec_int = 4_2
+		let x1 = - 1
 		let string = "First day a month: \\(((x)))"
-		let string = "First day a month: \"
+		let string = "First day a month: \""
+		
+		
+		//Arithmetic
+		let sum = 2 + 3;
+		let difference = 3 - 2
+		let product = x * 5
+		let quotient = x / 2
+		let remainder =  sum % x
+		let minus_remainder = -sum % x
+		let expr = sum + difference - product
+		
+		let three = 3
+		let minusThree = -three
+		let plusThree = -minusThree
+		
+		let minusSix = -6
+		let alsoMinusSix = +minusSix
+		
+		var a = 1
+		a += 2
+		
+		1 == 1
+		2 != 1
+		2 > 1
+		1 < 2
+		1 >= 1
+		2 <= 1
+		
+		let name = "world"
+		if name == "world" { 
+			print("hello,world!")
+		} else {
+			print("Sorry")
+		}
+		
+		//Ternary
+		let contentHeight = 40 
+		let hasHeader = true
+		let rowHeight = hasHeader ? 50 : 20
+
+		//Closed range operator
+		for index in 1...5 {
+			print("success")
+		}
+		
+		//Half-open range operator 
+		let names = ["Anna", "Alex", "Brian", "Jack"]
+		let count = names.count
+		for i in 0..<count { 
+			print("Person1")
+		}
+		
+		for name in names[2...] { 
+			print(name)
+		}
+		
+		for name in names [...2] {
+			print(name)
+		}
+		
+		for name in names [..<2] {
+			print(name)
+		}
+		
+		let range = ...5
+		
+		if !allowedEntry { 
+			print("ACCESS DENIED")
+		}
+		
+		let hasDoorKey = false
+		let knows = true 
+		if hasDoorKey || knows { 
+			print("Welcome!")
+		}
+		
+		if hasDoorKey && knows { 
+			print("Welcome!")
+		}
+		
+		
+		if hasDoorKey || knows && allowedEntry { 
+			print("Welcome")
+		}
