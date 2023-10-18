@@ -6,7 +6,7 @@
 %x CHAR
 
 DIGIT [0-9]
-LETTER [A-Za-z] // Доюавляем нижнее подчеркивание
+LETTER [_A-Za-z]
 HEX_DIGIT [0-9A-Fa-f]
 OCT_DIGIT [0-7]
 BIN_DIGIT [01]
@@ -292,12 +292,12 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
     }
 }
 
-[0-9]\.[_0-9]*[eE]?[+-]?[_0-9]* { // Добавить плюс к первой части числа и исправить звездочку, а вообще перепроверить регулярку (поиграться со Swift)
+^[-+]?[_0-9]*\.?[_0-9]+([eE][-+]?[_0-9]+)?$ { 
 	removeChar(yytext, str, '_');
     printf("DECIMAL_FLOATINGPOINT_NUMBER: %f\n", atof(str));
 }
 
-0x[_0-9a-fA-F]+\.[_0-9a-fA-F]*p?[_0-9]* { // Смотри выше 
+^[-+]?0[xX][_0-9a-fA-F]*\.[_0-9a-fA-F]+([pP][-+]?[_0-9]+)?$ { 
 	removeChar(yytext, str, '_');
     printf("HEXADECIMAL_FLOATINGPOINT_NUMBER: %f\n", atof(str));
 }
