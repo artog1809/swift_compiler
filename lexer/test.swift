@@ -1,4 +1,4 @@
-
+var red, green, blue: Double
         let valueExpected = "SUCCESS"
         let valueProvided = "success"
         
