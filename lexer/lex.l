@@ -1,6 +1,7 @@
 %option noyywrap
 %option never-interactive
 
+%x MULTILINE_STRING
 %x MULTILINE_COMMENT
 %x STRING
 %x CHAR
@@ -31,6 +32,7 @@ BIN_DIGIT [01]
 	char str[1024];
 	string stdstr = "";
 	int lineNumber = 1;  
+    int multilineNumberBegin = 0;
 	
 %}
 
@@ -189,6 +191,7 @@ willSet {printf("(%s) - WILLSET_KEY_WORD\n", yytext);}
 
 
 "." { printf("Found OPERATOR_POINT: %s\n", yytext); }
+"," { printf("Found OPERATOR_COMMA: %s\n", yytext); }
 "..." { printf("Found OPERATOR_CLOSED_RANGE: %s\n", yytext); }
 "..<" { printf("Found OPERATOR_HALF_OPEN_RANGE: %s\n", yytext); }
 [A-Za-z0-9]?\.\.\.[A-Za-z0-9]? { printf("Found OPERATOR_ONE_SIDED_RANGE: %s\n", yytext); } 
@@ -219,14 +222,27 @@ Float { printf("Found TYPE_FLOAT: %s\n", yytext); }
 Float80 { printf("Found TYPE_FLOAT80: %s\n", yytext); }
 Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
 
-"/*" {strcpy(str, ""); BEGIN(MULTILINE_COMMENT);}
+"/*" {strcpy(str, ""); multilineNumberBegin = lineNumber; BEGIN(MULTILINE_COMMENT);}
 <MULTILINE_COMMENT>[^*\n]* { strcat(str, yytext); }
 <MULTILINE_COMMENT>\n { lineNumber++; }
 <MULTILINE_COMMENT>"*"+[^/]* { strcat(str, yytext); }
 <MULTILINE_COMMENT>"*"+"/" { printf("Found MULTILINE_COMMENT: %s\n", str); BEGIN(INITIAL); }
-<MULTILINE_COMMENT><<EOF>> { printf("MULTILINE_COMMENT ERROR in line %d: comment are not closed\n"); BEGIN(INITIAL); }
+<MULTILINE_COMMENT><<EOF>> { printf("MULTILINE_COMMENT ERROR in line %d: comment are not closed\n", multilineNumberBegin); BEGIN(INITIAL); }
 
-\/\/[.]* { printf("Found ONELINE_COMMENT: %s\n", yytext); }
+\/\/.* { printf("Found ONELINE_COMMENT: %s\n", yytext); }
+
+\"\"\" { strcpy(str, ""); multilineNumberBegin = lineNumber; BEGIN(MULTILINE_STRING); }
+<MULTILINE_STRING>[^*\n\r] { strcat(str, yytext); }
+<MULTILINE_STRING>[\n\r] { lineNumber++; }
+<MULTILINE_STRING>\\\\ { strcat(str, "\\"); }
+<MULTILINE_STRING>\\\" { strcat(str, "\""); }
+<MULTILINE_STRING>\\\' { strcat(str, "\'"); }
+<MULTILINE_STRING>\\\"\" { strcat(str, "\"\""); }
+<MULTILINE_STRING>\\\"\"\" { strcat(str, "\"\"\""); }
+<MULTILINE_STRING>\\\"\\\"\" { strcat(str, "\"\"\""); }
+<MULTILINE_STRING>\"{1,2} { strcat(str, yytext); }
+<MULTILINE_STRING>\"\"\" { printf("Found MULTILINE_STRING: %s\n", str); BEGIN(INITIAL); }
+<MULTILINE_STRING><<EOF>> { printf("MULTILINE_COMMENT ERROR in line %d: multiline string are not closed\n", multilineNumberBegin); BEGIN(INITIAL); }
 
 \" { stdstr = ""; BEGIN(STRING); }
 <STRING>[^\\\"\n]+ { stdstr += yytext; }

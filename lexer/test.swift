@@ -115,3 +115,67 @@ var red, green, blue: Double
 		if hasDoorKey || knows && allowedEntry { 
 			print("Welcome")
 		}
+
+		// String literals
+		// One Line String
+		let oneLineString = "OneLine String!"
+		
+		// Multiline String
+		let multiLineString = """
+		Hello,
+		World!
+		"""
+
+		// Multiline String with double quotes
+		let multiLineStringDoubleQuotes = """
+		"Hello,"
+		World!
+		"""
+
+		// Multiline String with transfers lines
+		let multiLineStringTransfersLines = """
+		Hello, world! And all \
+		lorem ipsum dolor sit amet.
+		World!
+		"""
+
+		// Multiline String with escaped double quotes
+		let multiLineStringEscapedQuotes = """
+		\"Hello,\"
+		World!
+		"""
+
+		// Multiline String with escaped single quotes
+		let multiLineStringEscapedQuotes = """
+		\'Hello,\'
+		World!
+		"""
+
+		// Multiline String with escaped backslash
+		let multiLineStringEscapedBackslash = """
+		\\Hello,
+		World!
+		"""
+
+		//Multiline String with escaped triple quotes
+		let multiLineStringEscapedTripleQuotes = """
+		\"\"\"Hello,\"
+		lorem ipsum dolor sit \""" amet.
+		World!
+		"""
+
+		// Multiline String with escaped triple quotes
+		let multiLineStringEscapedTripleQuotes = """
+		\"\"\"Hello,\"
+		lorem ipsum\"\"" dolor sit \""" amet.
+		World!
+		"""
+
+		// Comments
+		// Single line comment
+		
+		/* Multiline comment
+		let multilineComment = """
+		Multiline
+		comment
+		""" */
