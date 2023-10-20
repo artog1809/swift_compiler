@@ -326,7 +326,7 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
     printf("HEXADECIMAL_FLOATINGPOINT_NUMBER: %f\n", atof(str));
 }
 
-{LETTER}({LETTER}|{DIGIT}|_)* { printf("Found IDENTIFIER: %s\n", yytext); }
+{LETTER}({LETTER}|{DIGIT})* { printf("Found IDENTIFIER: %s\n", yytext); }
 %%
 
 void convertCharacterCodeToString(char charCode[], int pos, char *str)
