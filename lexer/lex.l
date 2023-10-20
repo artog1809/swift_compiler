@@ -221,11 +221,11 @@ Float { printf("Found TYPE_FLOAT: %s\n", yytext); }
 Float80 { printf("Found TYPE_FLOAT80: %s\n", yytext); }
 Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
 
-"/*" {strcpy(str, ""); multilineNumberBegin = lineNumber; BEGIN(MULTILINE_COMMENT);}
+"/*" {strcpy(str, "/*"); multilineNumberBegin = lineNumber; BEGIN(MULTILINE_COMMENT);}
 <MULTILINE_COMMENT>[^*\n]* { strcat(str, yytext); }
-<MULTILINE_COMMENT>\n { lineNumber++; }
+<MULTILINE_COMMENT>\n { strcat(str, yytext); lineNumber++; }
 <MULTILINE_COMMENT>"*"+[^/]* { strcat(str, yytext); }
-<MULTILINE_COMMENT>"*"+"/" { printf("Found MULTILINE_COMMENT: %s\n", str); BEGIN(INITIAL); }
+<MULTILINE_COMMENT>"*"+"/" { strcat(str, "*/"); printf("Found MULTILINE_COMMENT: %s\n", str); BEGIN(INITIAL); }
 <MULTILINE_COMMENT><<EOF>> { printf("MULTILINE_COMMENT ERROR in line %d: comment are not closed\n", multilineNumberBegin); BEGIN(INITIAL); }
 
 \/\/.* { printf("Found ONELINE_COMMENT: %s\n", yytext); }
