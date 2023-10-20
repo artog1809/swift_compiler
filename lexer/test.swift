@@ -169,7 +169,7 @@ var red, green, blue: Double
 		\"\"\"Hello,\"
 		lorem ipsum\"\"" dolor sit \""" amet.
 		World!
-		"""
+		l"""
 
 		// Comments
 		// Single line comment
@@ -179,3 +179,13 @@ var red, green, blue: Double
 		Multiline
 		comment
 		""" */
+
+		print("HELLO, 
+
+
+
+world")
+
+var b = 0b+ 0b1 + 0ba + 0b_1 + 0b12
+var x = 0x+ 0x_1 + 0xvv + 0x7x + 0xf
+var o = 0o+ 0o1 + 0ov + 0o_1 + 0o78
