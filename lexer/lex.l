@@ -231,8 +231,8 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
 \/\/.* { printf("Found ONELINE_COMMENT: %s\n", yytext); }
 
 \"\"\" { strcpy(str, ""); multilineNumberBegin = lineNumber; BEGIN(MULTILINE_STRING); }
-<MULTILINE_STRING>[^*\n\r] { strcat(str, yytext); }
-<MULTILINE_STRING>[\n\r] { lineNumber++; }
+<MULTILINE_STRING>[^\n\r] { strcat(str, yytext); }
+<MULTILINE_STRING>\n { strcat(str, yytext); lineNumber++; }
 <MULTILINE_STRING>\\\\ { strcat(str, "\\"); }
 <MULTILINE_STRING>\\\" { strcat(str, "\""); }
 <MULTILINE_STRING>\\\' { strcat(str, "\'"); }
@@ -241,7 +241,8 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
 <MULTILINE_STRING>\\\"\\\"\" { strcat(str, "\"\"\""); }
 <MULTILINE_STRING>\"{1,2} { strcat(str, yytext); }
 <MULTILINE_STRING>\"\"\" { printf("Found MULTILINE_STRING: %s\n", str); BEGIN(INITIAL); }
-<MULTILINE_STRING><<EOF>> { printf("MULTILINE_COMMENT ERROR in line %d: multiline string are not closed\n", multilineNumberBegin); BEGIN(INITIAL); }
+<MULTILINE_STRING><<EOF>> { printf("MULTILINE_STRING ERROR in line %d: multiline string are not closed\n", multilineNumberBegin); BEGIN(INITIAL); }
+
 
 \" { stdstr = ""; BEGIN(STRING); }
 <STRING>[^\\\"\n]+ { stdstr += yytext; }
