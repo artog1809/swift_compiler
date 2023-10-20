@@ -19,4 +19,4 @@ start_test:
 	./compile.out test.swift
 
 clear_flex:
-	rm ./lex.yy.cpp ./a.out
+	rm ./lex.yy.cpp ./compile.out
