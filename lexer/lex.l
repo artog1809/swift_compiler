@@ -5,6 +5,7 @@
 %x MULTILINE_COMMENT
 %x STRING
 %x CHAR
+%x ERROR_ONELINE_STRING
 
 DIGIT [0-9]
 LETTER [_A-Za-z]
@@ -246,7 +247,7 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
 
 \" { stdstr = ""; BEGIN(STRING); }
 <STRING>[^\\\"\n]+ { stdstr += yytext; }
-<STRING>\n { lineNumber++; }
+<STRING>\n { printf("STRING ERROR in line %d: unterminated string literal\n", lineNumber++); BEGIN(ERROR_ONELINE_STRING); }
 <STRING>\\n  { stdstr += "\n"; }
 <STRING>\\b { stdstr += "\b"; }
 <STRING>\\0  { stdstr += "\0"; }
@@ -257,6 +258,8 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
 <STRING>\\v { stdstr += "\v"; }
 <STRING>\\\' { stdstr += "\'"; }
 <STRING>\\\" { stdstr += "\""; }
+<ERROR_ONELINE_STRING>.*\" { printf("STRING ERROR in line %d: unterminated string literal\n", lineNumber); BEGIN(INITIAL); }
+<ERROR_ONELINE_STRING>\n { lineNumber++; }
 <STRING>\\u\{(({HEX_DIGIT}){5})\} {
     char *a;
     int x = strtol(yytext + 3, &a, 16);
