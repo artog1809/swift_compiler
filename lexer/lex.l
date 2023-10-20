@@ -194,7 +194,6 @@ willSet {printf("(%s) - WILLSET_KEY_WORD\n", yytext);}
 "," { printf("Found OPERATOR_COMMA: %s\n", yytext); }
 "..." { printf("Found OPERATOR_CLOSED_RANGE: %s\n", yytext); }
 "..<" { printf("Found OPERATOR_HALF_OPEN_RANGE: %s\n", yytext); }
-[A-Za-z0-9]?\.\.\.[A-Za-z0-9]? { printf("Found OPERATOR_ONE_SIDED_RANGE: %s\n", yytext); } 
 
 ":" { printf("Found OPERATOR_COLON: %s\n", yytext); }
 
