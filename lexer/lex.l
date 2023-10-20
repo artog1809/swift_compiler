@@ -280,7 +280,10 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
 	printf("DECIMAL_NUMBER: %d\n", atoi(str));
 }
 
-0b[_0-1]+ {
+0b[^0-1][_0-9a-zA-Z]* { printf("BIN_NUMBER ERROR in line %d: is not a valid binary digit (0-1) in integer literal: %s\n", lineNumber, yytext); }
+0b[0-1][_2-9a-zA-Z]+ { printf("BIN_NUMBER ERROR in line %d: is not a valid binary digit (0-1) in integer literal: %s\n", lineNumber, yytext); }
+
+0b[0-1][_0-1]* {
 
     if(strlen(yytext) > 2)
     {
@@ -293,7 +296,10 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
     }
 }
 
-0o[_0-7]+ {
+0o[^0-7][_0-9a-zA-Z]* { printf("OCT_NUMBER ERROR in line %d: is not a valid octal digit (0-7) in integer literal: %s\n", lineNumber, yytext); }
+0o[0-7][_8-9a-zA-Z]+ { printf("OCT_NUMBER ERROR in line %d: is not a valid octal digit (0-7) in integer literal: %s\n", lineNumber, yytext); }
+
+0o[0-7][_0-7]* {
 
     if(strlen(yytext) > 2)
     {
@@ -306,7 +312,10 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
     }
 }
 
-0x[_0-9a-fA-F]+ {
+0x[^0-9a-fA-F][_0-9a-zA-Z]* { printf("HEX_NUMBER ERROR in line %d: is not a valid hexadecimal digit (0-9, A-F) in integer literal: %s\n", lineNumber, yytext); }
+0x[0-9a-fA-F][_g-zG-Z]+ { printf("HEX_NUMBER ERROR in line %d: is not a valid hexadecimal digit (0-9, A-F) in integer literal: %s\n", lineNumber, yytext); }
+
+0x[0-9a-fA-F][_0-9a-fA-F]* {
 
     if(strlen(yytext) > 2)
     {
