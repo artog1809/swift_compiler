@@ -191,12 +191,24 @@ var b = 0b+ 0b1 + 0ba + 0b_1 + 0b12
 var x = 0x+ 0x_1 + 0xvv + 0x7x + 0xf
 var o = 0o+ 0o1 + 0ov + 0o_1 + 0o78 */
 
-"Строка с интерполяицей \\(((x)))"
-"Строка с интерполяицей \(x)"
-var emoji = "\u{1}"
-var emoji = "\u{1F}"
-var emoji = "\u{1F6}"
-var emoji = "\u{1F60}"
-var emoji = "\u{1F601}"
-var emoji = "\u{U+1F601}"
-var emoji = "\u{+1F601}"
+// "Строка с интерполяицей \\(((x)))"
+// "Строка с интерполяицей \(x)"
+// var emoji = "\u{1}"
+// var emoji = "\u{1F}"
+// var emoji = "\u{1F6}"
+// var emoji = "\u{1F60}"
+// var emoji = "\u{1F601}"
+// var emoji = "\u{U+1F601}"
+// var emoji = "\u{+1F601}"
+
+func printAndCount(string: String) -> Int {
+    print(string)
+    return string.count
+}
+func printWithoutCounting(string: String) {
+    let _ = printAndCount(string: string)
+}
+printAndCount(string: "hello, world")
+// Выведет "hello, world" и возвращает значение 12
+printWithoutCounting(string: "hello, world")
+// Выведет "hello, world", но не возвращает значения
