@@ -328,12 +328,12 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
     }
 }
 
-^[-+]?[_0-9]*\.?[_0-9]+([eE][-+]?[_0-9]+)?$ { 
+[-+]?[_0-9]*\.?[_0-9]+([eE][-+]?[_0-9]+)?$ { 
 	removeChar(yytext, str, '_');
     printf("DECIMAL_FLOATINGPOINT_NUMBER: %f\n", atof(str));
 }
 
-^[-+]?0[xX][_0-9a-fA-F]*\.[_0-9a-fA-F]+([pP][-+]?[_0-9]+)?$ { 
+[-+]?0[xX][_0-9a-fA-F]*\.[_0-9a-fA-F]+([pP][-+]?[_0-9]+)?$ { 
 	removeChar(yytext, str, '_');
     printf("HEXADECIMAL_FLOATINGPOINT_NUMBER: %f\n", atof(str));
 }
