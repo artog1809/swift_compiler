@@ -251,7 +251,7 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
 <STRING>\\n  { stdstr += "\n"; }
 <STRING>\\b { stdstr += "\b"; }
 <STRING>\\0  { stdstr += "\0"; }
-<STRING>\\\\ { stdstr += "\\"; }
+<STRING>\\ { stdstr += "\\"; }
 <STRING>\\f { stdstr += "\f"; }
 <STRING>\\r  { stdstr += "\r"; }
 <STRING>\\t  { stdstr += "\t"; }

@@ -1,3 +1,4 @@
+/*
 var red, green, blue: Double
         let valueExpected = "SUCCESS"
         let valueProvided = "success"
@@ -184,8 +185,11 @@ var red, green, blue: Double
 
 
 
-world")
+world") 
 
 var b = 0b+ 0b1 + 0ba + 0b_1 + 0b12
 var x = 0x+ 0x_1 + 0xvv + 0x7x + 0xf
-var o = 0o+ 0o1 + 0ov + 0o_1 + 0o78
+var o = 0o+ 0o1 + 0ov + 0o_1 + 0o78 */
+
+"Строка с интерполяицей \\(((x)))"
+"Строка с интерполяицей \(x)"
