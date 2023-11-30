@@ -63,6 +63,7 @@ static {printf("(%s) - STATIC_KEY_WORD\n", yytext);}
 struct {printf("(%s) - STRUCT_KEY_WORD\n", yytext);}
 subscript {printf("(%s) - SUBSCRIPT_KEY_WORD\n", yytext);}
 typealias {printf("(%s) - TYPEALIAS_KEY_WORD\n", yytext);}
+func {printf("(%s) - FUNC_KEY_WORD\n", yytext);}
 var {printf("(%s) - VAR_KEY_WORD\n", yytext);}
 
 
@@ -197,6 +198,7 @@ willSet {printf("(%s) - WILLSET_KEY_WORD\n", yytext);}
 "..<" { printf("Found OPERATOR_HALF_OPEN_RANGE: %s\n", yytext); }
 
 ":" { printf("Found OPERATOR_COLON: %s\n", yytext); }
+"->" { printf("Fount OPERATOR_RETURN_VALUE: %s\n", yytext); }
 
 "(" { printf("Found LEFT_ROUND_BRACKET: %s\n", yytext); }
 ")" { printf("Found RIGHT_ROUND_BRACKET: %s\n", yytext); }
