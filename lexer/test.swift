@@ -193,3 +193,10 @@ var o = 0o+ 0o1 + 0ov + 0o_1 + 0o78 */
 
 "Строка с интерполяицей \\(((x)))"
 "Строка с интерполяицей \(x)"
+var emoji = "\u{1}"
+var emoji = "\u{1F}"
+var emoji = "\u{1F6}"
+var emoji = "\u{1F60}"
+var emoji = "\u{1F601}"
+var emoji = "\u{U+1F601}"
+var emoji = "\u{+1F601}"

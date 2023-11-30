@@ -260,17 +260,13 @@ Double { printf("Found TYPE_DOUBLE: %s\n", yytext); }
 <STRING>\\\" { stdstr += "\""; }
 <ERROR_ONELINE_STRING>.*\" { printf("STRING ERROR in line %d: unterminated string literal\n", lineNumber); BEGIN(INITIAL); }
 <ERROR_ONELINE_STRING>\n { lineNumber++; }
-<STRING>\\u\{(({HEX_DIGIT}){5})\} {
+<STRING>\\u\{(({HEX_DIGIT}){1,5})\} {
     char *a;
     int x = strtol(yytext + 3, &a, 16);
-    if (x <= 127) {
         char buf[2];
         buf[0] = x;
         buf[1] = 0;
 		stdstr += buf;
-    } else {
-        printf("Eror in %d: unicode not supported\n", lineNumber);
-    }
  } 
 <STRING>\" { std::cout << "STRING: " << stdstr << std::endl; BEGIN(INITIAL); }
 <STRING><<EOF>> { printf("Error in %d:  no closing quotation mark\n", lineNumber); BEGIN(INITIAL); }
