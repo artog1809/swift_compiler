@@ -7,7 +7,7 @@
 %token STATIC
 %token RETURN
 
-%token DO
+%token REPEAT
 %token IF
 %token ELSE
 %token FOR
@@ -64,6 +64,7 @@
 %start program
 
 %%
+
 program: programElem
     | program programElem
     ;
@@ -130,6 +131,34 @@ expr: expr POST_DECREMENT
     | expr '.' endlOpt ID
     ;
 
+stmtListOpt: /* empty */
+| stmtList endlOpt
+;
+
+blockStatement: '{' endlOpt stmtListOpt '}'
+;
+
+ifStmt: IF endlOpt '(' endlOpt expr endlOpt ')' endlOpt blockStatement
+| IF endlOpt expr endlOpt blockStatement
+| IF endlOpt '(' endlOpt expr endlOpt ')' endlOpt blockStatement endlOpt ELSE endlOpt blockStatement
+| IF endlOpt expr endlOpt blockStatement endlOpt ELSE endlOpt blockStatement
+;
+
+whileStmt: WHILE endlOpt '(' endlOpt expr endlOpt ')' endlOpt blockStatement
+| WHILE endlOpt expr endlOpt blockStatement
+;
+
+repeatWhileStmt: REPEAT endlOpt '(' endlOpt blockStatement endlOpt ')' endlOpt WHILE endlOpt '(' endlOpt expr endlOpt ')'
+| REPEAT endlOpt '(' endlOpt blockStatement endlOpt ')' endlOpt WHILE endlOpt expr 
+| REPEAT endlOpt blockStatement endlOpt WHILE endlOpt '(' endlOpt expr endlOpt ')'
+| REPEAT endlOpt blockStatement endlOpt WHILE endlOpt expr 
+;
+
+forInStmt: FOR endlOpt expr endlOpt IN endlOpt expr endlOpt blockStatement
+| FOR endlOpt '(' endlOpt expr endlOpt ')' endlOpt '(' endlOpt expr endlOpt ')' endlOpt blockStatement
+| FOR endlOpt '(' endlOpt expr endlOpt ')' endlOpt expr endlOpt blockStatement
+| FOR endlOpt expr endlOpt '(' endlOpt expr endlOpt ')' endlOpt blockStatement
+;
 
 switchStmt: SWITCH endlOpt '(' endlOpt expr endlOpt ')' endlOpt '{' endlOpt caseList '}'
     ;
