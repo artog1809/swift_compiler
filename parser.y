@@ -1,5 +1,3 @@
-
-
 %token PRIVATE
 %token PUBLIC
 %token CLASS
@@ -7,6 +5,7 @@
 %token STATIC
 %token RETURN
 
+%token REPEAT
 %token REPEAT
 %token IF
 %token ELSE
@@ -39,7 +38,6 @@
 %token FLOAT_LITERAL
 %token DOUBLE_LITERAL
 
-
 %token ID
 %nonassoc ENDL
 
@@ -64,7 +62,6 @@
 %start program
 
 %%
-
 program: programElem
     | program programElem
     ;
@@ -178,8 +175,7 @@ breakOpt: /* empty */
 returnStatement: RETURN expr endlOpt
     ;
 
-type: INT 
-    | BOOL
+type: INT     | BOOL
     | STRING
     | FLOAT
     | DOUBLE
