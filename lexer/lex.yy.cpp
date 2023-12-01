@@ -356,8 +356,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 208
-#define YY_END_OF_BUFFER 209
+#define YY_NUM_RULES 209
+#define YY_END_OF_BUFFER 210
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -367,85 +367,85 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[715] =
     {   0,
-        0,    0,    0,    0,  162,  162,    0,    0,    0,    0,
-        0,    0,  209,  208,    2,    1,  129,  178,  208,  108,
-      117,  139,  140,  107,  104,  134,  105,  133,  106,  195,
-      195,  137,  121,  109,  122,  208,  207,  207,  207,  207,
-      207,  207,  207,  207,  207,  207,  207,  141,  142,  119,
-      207,  207,  207,  207,  207,  207,  207,  207,  207,  207,
-      207,  207,  207,  207,  207,  207,  207,  207,  207,  207,
-      143,  118,  144,  120,  168,  169,  168,  168,  162,  163,
-      164,  179,  180,  194,  184,  208,  192,  191,    2,  126,
+        0,    0,    0,    0,  163,  163,    0,    0,    0,    0,
+        0,    0,  210,  209,    2,    1,  129,  179,  209,  108,
+      117,  140,  141,  107,  104,  134,  105,  133,  106,  196,
+      196,  138,  121,  109,  122,  137,  208,  208,  208,  208,
+      208,  208,  208,  208,  208,  208,  208,  142,  143,  119,
+      208,  208,  208,  208,  208,  208,  208,  208,  208,  208,
+      208,  208,  208,  208,  208,  208,  208,  208,  208,  208,
+      144,  118,  145,  120,  169,  170,  169,  169,  163,  164,
+      165,  180,  181,  195,  185,  209,  193,  192,    2,  126,
         0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
 
         0,  114,  127,  113,  131,    0,    0,    0,  110,  132,
-      111,  138,    0,    0,  161,  166,  112,  205,  195,    0,
+      111,  139,    0,    0,  162,  167,  112,  206,  196,    0,
         0,    0,    0,    0,  115,  124,  123,  125,  116,  130,
-      207,  207,  207,  207,  207,  207,  207,  207,  207,  207,
-      207,  207,  207,  207,   47,  207,  207,  207,  207,  207,
-      207,   33,  207,  207,  207,  207,  207,  207,  207,  207,
-      207,  207,   38,  207,   39,   49,  207,  207,  207,  207,
-      207,  207,  207,  207,  207,  207,  207,  207,  207,  207,
-      207,  207,  207,  207,  207,  207,  207,  207,  207,  207,
-      207,  128,  176,  171,  172,  170,  162,  164,  164,  165,
+      208,  208,  208,  208,  208,  208,  208,  208,  208,  208,
+      208,  208,  208,  208,   47,  208,  208,  208,  208,  208,
+      208,   33,  208,  208,  208,  208,  208,  208,  208,  208,
+      208,  208,   38,  208,   39,   49,  208,  208,  208,  208,
+      208,  208,  208,  208,  208,  208,  208,  208,  208,  208,
+      208,  208,  208,  208,  208,  208,  208,  208,  208,  208,
+      208,  128,  177,  172,  173,  171,  163,  165,  165,  166,
 
-      179,  190,  189,  183,  182,  185,  181,  186,  187,    0,
-      188,    0,  191,  167,    0,    0,    0,    0,    0,    0,
+      180,  191,  190,  184,  183,  186,  182,  187,  188,    0,
+      189,    0,  192,  168,    0,    0,    0,    0,    0,    0,
         0,    0,   97,    0,    0,    0,    0,    0,    0,  135,
-      136,  166,    0,    0,    0,    0,  196,  198,  199,  201,
-      202,  202,  204,  202,   46,  207,  207,  207,  207,  152,
-      207,  207,  207,  207,  207,  207,  207,  207,  207,  207,
-      207,  207,  207,  207,  207,  207,  207,  207,  207,  207,
-      207,  207,   36,  207,   62,  207,  207,  207,  207,  207,
-      207,  207,  207,  207,   13,  207,   50,  207,  207,  207,
-      207,  207,  207,  207,  207,  207,  207,  207,  207,  207,
+      136,  167,    0,    0,    0,    0,  197,  199,  200,  202,
+      203,  203,  205,  203,   46,  208,  208,  208,  208,  153,
+      208,  208,  208,  208,  208,  208,  208,  208,  208,  208,
+      208,  208,  208,  208,  208,  208,  208,  208,  208,  208,
+      208,  208,   36,  208,   62,  208,  208,  208,  208,  208,
+      208,  208,  208,  208,   13,  208,   50,  208,  208,  208,
+      208,  208,  208,  208,  208,  208,  208,  208,  208,  208,
 
-      207,   78,  207,  207,  207,  207,  207,  207,  207,  207,
-       56,  207,  207,   26,  207,  207,  207,  207,  177,  173,
+      208,   78,  208,  208,  208,  208,  208,  208,  208,  208,
+       56,  208,  208,   26,  208,  208,  208,  208,  178,  174,
         0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-        0,    0,    0,    0,    0,    0,    0,  196,  198,  197,
-      197,  199,  201,  200,  200,  202,  202,  204,  203,  203,
-      202,  145,  207,  207,  207,  207,  207,  207,  148,  207,
-       52,  207,   80,  157,  207,  207,   28,  207,  207,  207,
-      207,  207,  207,  207,  207,  207,   34,    6,  207,  207,
-      207,  207,  207,   25,  207,  207,  207,  207,   10,  207,
-      207,   65,   66,  207,   68,  207,   14,  207,  207,  207,
+        0,    0,    0,    0,    0,    0,    0,  197,  199,  198,
+      198,  200,  202,  201,  201,  203,  203,  205,  204,  204,
+      203,  146,  208,  208,  208,  208,  208,  208,  149,  208,
+       52,  208,   80,  158,  208,  208,   28,  208,  208,  208,
+      208,  208,  208,  208,  208,  208,   34,    6,  208,  208,
+      208,  208,  208,   25,  208,  208,  208,  208,   10,  208,
+      208,   65,   66,  208,   68,  208,   14,  208,  208,  208,
 
-      207,  207,  207,  207,  207,  207,  207,  207,  207,  207,
-      207,   51,   79,  207,  207,  207,  207,  207,  207,   55,
-      207,  207,   82,  207,  207,  207,  174,    0,    0,    0,
+      208,  208,  208,  208,  208,  208,  208,  208,  208,  208,
+      208,   51,   79,  208,  208,  208,  208,  208,  208,   55,
+      208,  208,   82,  208,  208,  208,  175,    0,    0,    0,
         0,    0,    0,   89,    0,    0,   95,    0,    0,    0,
-      100,    0,    0,    0,  206,    0,  202,  207,  207,  158,
-      149,  150,  151,  207,  207,  207,  207,  207,  153,  207,
-       27,   29,    4,  207,  207,  207,   32,  207,  207,  207,
-      207,  207,   48,  207,   61,   37,  207,  207,   64,   11,
-      207,  207,  207,  207,  207,  207,  207,  207,  207,  207,
-      207,  207,  207,  207,  207,  207,   77,  207,  207,  207,
+      100,    0,    0,    0,  207,    0,  203,  208,  208,  159,
+      150,  151,  152,  208,  208,  208,  208,  208,  154,  208,
+       27,   29,    4,  208,  208,  208,   32,  208,  208,  208,
+      208,  208,   48,  208,   61,   37,  208,  208,   64,   11,
+      208,  208,  208,  208,  208,  208,  208,  208,  208,  208,
+      208,  208,  208,  208,  208,  208,   77,  208,  208,  208,
 
-       53,  207,   42,  207,  207,   44,   45,  207,  175,    0,
-      193,    0,    0,    0,    0,    0,   90,   91,    0,    0,
-        0,    0,    0,    0,    0,    0,    0,    0,    0,  202,
-      207,  160,  207,  207,  146,  154,  155,  156,  207,  207,
-      207,  207,    5,   59,  207,  207,  207,  207,    9,  207,
-      207,  207,  207,  207,  207,  207,  207,  207,   74,  207,
-      207,   19,   40,  207,  207,   41,   21,   22,  207,   43,
-       54,  207,  207,  207,    0,    0,    0,   86,    0,   88,
-       92,    0,    0,    0,    0,    0,    0,    0,    0,  207,
-      159,  207,  207,  207,  207,   31,   60,  207,  207,  207,
+       53,  208,   42,  208,  208,   44,   45,  208,  176,    0,
+      194,    0,    0,    0,    0,    0,   90,   91,    0,    0,
+        0,    0,    0,    0,    0,    0,    0,    0,    0,  203,
+      208,  161,  208,  208,  147,  155,  156,  157,  208,  208,
+      208,  208,    5,   59,  208,  208,  208,  208,    9,  208,
+      208,  208,  208,  208,  208,  208,  208,  208,   74,  208,
+      208,   19,   40,  208,  208,   41,   21,   22,  208,   43,
+       54,  208,  208,  208,    0,    0,    0,   86,    0,   88,
+       92,    0,    0,    0,    0,    0,    0,    0,    0,  208,
+      160,  208,  208,  208,  208,   31,   60,  208,  208,  208,
 
-      207,  207,  207,  207,  207,  207,  207,   72,  207,   16,
-      207,  207,  207,  207,  207,   81,   83,    0,    0,    0,
-        0,    0,    0,    0,    0,   99,    0,    0,  103,  207,
-       75,  207,   30,  207,  207,  207,  207,   63,   12,   67,
-      207,   15,   70,   71,  207,   18,   76,   20,  207,  207,
+      208,  208,  208,  208,  208,  208,  208,   72,  208,   16,
+      208,  208,  208,  208,  208,   81,   83,    0,    0,    0,
+        0,    0,    0,    0,    0,   99,    0,    0,  103,  208,
+       75,  208,   30,  208,  208,  208,  208,   63,   12,   67,
+      208,   15,   70,   71,  208,   18,   76,   20,  208,  208,
         0,    0,    0,    0,    0,   94,   96,    0,  101,    0,
-      147,  207,  207,  207,    7,  207,  207,  207,  207,   23,
-       24,   84,    0,   87,    0,    0,    0,  207,  207,  207,
-      207,  207,  207,   73,    0,    0,    0,    0,  207,  207,
-       58,   35,    8,   69,  207,    0,   93,    0,    0,  207,
+      148,  208,  208,  208,    7,  208,  208,  208,  208,   23,
+       24,   84,    0,   87,    0,    0,    0,  208,  208,  208,
+      208,  208,  208,   73,    0,    0,    0,    0,  208,  208,
+       58,   35,    8,   69,  208,    0,   93,    0,    0,  208,
 
-      207,  207,   85,   98,    0,  207,   57,  207,    0,    3,
-      207,  102,   17,    0
+      208,  208,   85,   98,    0,  208,   57,  208,    0,    3,
+      208,  102,   17,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -1972,199 +1972,199 @@ YY_RULE_SETUP
 case 137:
 YY_RULE_SETUP
 #line 201 "lex.l"
-{ printf("Found OPERATOR_COLON: %s\n", yytext); }
+{ printf("Fount TERNARY_OPERATOR_TRUE: %s\n", yytext);}
 	YY_BREAK
 case 138:
 YY_RULE_SETUP
 #line 202 "lex.l"
-{ printf("Fount OPERATOR_RETURN_VALUE: %s\n", yytext); }
+{ printf("Found OPERATOR_COLON: %s\n", yytext); }
 	YY_BREAK
 case 139:
 YY_RULE_SETUP
-#line 204 "lex.l"
-{ printf("Found LEFT_ROUND_BRACKET: %s\n", yytext); }
+#line 203 "lex.l"
+{ printf("Fount OPERATOR_RETURN_VALUE: %s\n", yytext); }
 	YY_BREAK
 case 140:
 YY_RULE_SETUP
 #line 205 "lex.l"
-{ printf("Found RIGHT_ROUND_BRACKET: %s\n", yytext); }
+{ printf("Found LEFT_ROUND_BRACKET: %s\n", yytext); }
 	YY_BREAK
 case 141:
 YY_RULE_SETUP
 #line 206 "lex.l"
-{ printf("Found LEFT_SQUARE_BRACKET: %s\n", yytext); }
+{ printf("Found RIGHT_ROUND_BRACKET: %s\n", yytext); }
 	YY_BREAK
 case 142:
 YY_RULE_SETUP
 #line 207 "lex.l"
-{ printf("Found RIGHT_SQUARE_BRACKET: %s\n", yytext); }
+{ printf("Found LEFT_SQUARE_BRACKET: %s\n", yytext); }
 	YY_BREAK
 case 143:
 YY_RULE_SETUP
 #line 208 "lex.l"
-{ printf("Found LEFT_FIGURE_BRACKET: %s\n", yytext); }
+{ printf("Found RIGHT_SQUARE_BRACKET: %s\n", yytext); }
 	YY_BREAK
 case 144:
 YY_RULE_SETUP
 #line 209 "lex.l"
-{ printf("Found RIGHT_FIGURE_BRACKET: %s\n", yytext); }
+{ printf("Found LEFT_FIGURE_BRACKET: %s\n", yytext); }
 	YY_BREAK
 case 145:
 YY_RULE_SETUP
-#line 211 "lex.l"
-{ printf("Found TYPE_BOOL: %s\n", yytext); }
+#line 210 "lex.l"
+{ printf("Found RIGHT_FIGURE_BRACKET: %s\n", yytext); }
 	YY_BREAK
 case 146:
 YY_RULE_SETUP
 #line 212 "lex.l"
-{ printf("Found TYPE_STRING: %s\n", yytext); }
+{ printf("Found TYPE_BOOL: %s\n", yytext); }
 	YY_BREAK
 case 147:
 YY_RULE_SETUP
 #line 213 "lex.l"
-{ printf("Found TYPE_CHARACTER: %s\n", yytext); }
+{ printf("Found TYPE_STRING: %s\n", yytext); }
 	YY_BREAK
 case 148:
 YY_RULE_SETUP
 #line 214 "lex.l"
-{ printf("Found TYPE_INT8: %s\n", yytext); }
+{ printf("Found TYPE_CHARACTER: %s\n", yytext); }
 	YY_BREAK
 case 149:
 YY_RULE_SETUP
 #line 215 "lex.l"
-{ printf("Found TYPE_INT16: %s\n", yytext); }
+{ printf("Found TYPE_INT8: %s\n", yytext); }
 	YY_BREAK
 case 150:
 YY_RULE_SETUP
 #line 216 "lex.l"
-{ printf("Found TYPE_INT32: %s\n", yytext); }
+{ printf("Found TYPE_INT16: %s\n", yytext); }
 	YY_BREAK
 case 151:
 YY_RULE_SETUP
 #line 217 "lex.l"
-{ printf("Found TYPE_INT64: %s\n", yytext); }
+{ printf("Found TYPE_INT32: %s\n", yytext); }
 	YY_BREAK
 case 152:
 YY_RULE_SETUP
 #line 218 "lex.l"
-{ printf("Found TYPE_INT: %s\n", yytext); }
+{ printf("Found TYPE_INT64: %s\n", yytext); }
 	YY_BREAK
 case 153:
 YY_RULE_SETUP
 #line 219 "lex.l"
-{ printf("Found TYPE_UINT8: %s\n", yytext); }
+{ printf("Found TYPE_INT: %s\n", yytext); }
 	YY_BREAK
 case 154:
 YY_RULE_SETUP
 #line 220 "lex.l"
-{ printf("Found TYPE_UINT16: %s\n", yytext); }
+{ printf("Found TYPE_UINT8: %s\n", yytext); }
 	YY_BREAK
 case 155:
 YY_RULE_SETUP
 #line 221 "lex.l"
-{ printf("Found TYPE_UINT32: %s\n", yytext); }
+{ printf("Found TYPE_UINT16: %s\n", yytext); }
 	YY_BREAK
 case 156:
 YY_RULE_SETUP
 #line 222 "lex.l"
-{ printf("Found TYPE_UINT64: %s\n", yytext); }
+{ printf("Found TYPE_UINT32: %s\n", yytext); }
 	YY_BREAK
 case 157:
 YY_RULE_SETUP
 #line 223 "lex.l"
-{ printf("Found TYPE_UINT: %s\n", yytext); }
+{ printf("Found TYPE_UINT64: %s\n", yytext); }
 	YY_BREAK
 case 158:
 YY_RULE_SETUP
 #line 224 "lex.l"
-{ printf("Found TYPE_FLOAT: %s\n", yytext); }
+{ printf("Found TYPE_UINT: %s\n", yytext); }
 	YY_BREAK
 case 159:
 YY_RULE_SETUP
 #line 225 "lex.l"
-{ printf("Found TYPE_FLOAT80: %s\n", yytext); }
+{ printf("Found TYPE_FLOAT: %s\n", yytext); }
 	YY_BREAK
 case 160:
 YY_RULE_SETUP
 #line 226 "lex.l"
-{ printf("Found TYPE_DOUBLE: %s\n", yytext); }
+{ printf("Found TYPE_FLOAT80: %s\n", yytext); }
 	YY_BREAK
 case 161:
 YY_RULE_SETUP
-#line 228 "lex.l"
-{strcpy(str, "/*"); multilineNumberBegin = lineNumber; BEGIN(MULTILINE_COMMENT);}
+#line 227 "lex.l"
+{ printf("Found TYPE_DOUBLE: %s\n", yytext); }
 	YY_BREAK
 case 162:
 YY_RULE_SETUP
 #line 229 "lex.l"
-{ strcat(str, yytext); }
+{strcpy(str, "/*"); multilineNumberBegin = lineNumber; BEGIN(MULTILINE_COMMENT);}
 	YY_BREAK
 case 163:
-/* rule 163 can match eol */
 YY_RULE_SETUP
 #line 230 "lex.l"
-{ strcat(str, yytext); lineNumber++; }
+{ strcat(str, yytext); }
 	YY_BREAK
 case 164:
 /* rule 164 can match eol */
 YY_RULE_SETUP
 #line 231 "lex.l"
-{ strcat(str, yytext); }
+{ strcat(str, yytext); lineNumber++; }
 	YY_BREAK
 case 165:
+/* rule 165 can match eol */
 YY_RULE_SETUP
 #line 232 "lex.l"
-{ strcat(str, "*/"); printf("Found MULTILINE_COMMENT: %s\n", str); BEGIN(INITIAL); }
-	YY_BREAK
-case YY_STATE_EOF(MULTILINE_COMMENT):
-#line 233 "lex.l"
-{ printf("MULTILINE_COMMENT ERROR in line %d: comment are not closed\n", multilineNumberBegin); BEGIN(INITIAL); }
+{ strcat(str, yytext); }
 	YY_BREAK
 case 166:
 YY_RULE_SETUP
-#line 235 "lex.l"
-{ printf("Found ONELINE_COMMENT: %s\n", yytext); }
+#line 233 "lex.l"
+{ strcat(str, "*/"); printf("Found MULTILINE_COMMENT: %s\n", str); BEGIN(INITIAL); }
+	YY_BREAK
+case YY_STATE_EOF(MULTILINE_COMMENT):
+#line 234 "lex.l"
+{ printf("MULTILINE_COMMENT ERROR in line %d: comment are not closed\n", multilineNumberBegin); BEGIN(INITIAL); }
 	YY_BREAK
 case 167:
 YY_RULE_SETUP
-#line 237 "lex.l"
-{ strcpy(str, ""); multilineNumberBegin = lineNumber; BEGIN(MULTILINE_STRING); }
+#line 236 "lex.l"
+{ printf("Found ONELINE_COMMENT: %s\n", yytext); }
 	YY_BREAK
 case 168:
 YY_RULE_SETUP
 #line 238 "lex.l"
-{ strcat(str, yytext); }
+{ strcpy(str, ""); multilineNumberBegin = lineNumber; BEGIN(MULTILINE_STRING); }
 	YY_BREAK
 case 169:
-/* rule 169 can match eol */
 YY_RULE_SETUP
 #line 239 "lex.l"
-{ strcat(str, yytext); lineNumber++; }
+{ strcat(str, yytext); }
 	YY_BREAK
 case 170:
+/* rule 170 can match eol */
 YY_RULE_SETUP
 #line 240 "lex.l"
-{ strcat(str, "\\"); }
+{ strcat(str, yytext); lineNumber++; }
 	YY_BREAK
 case 171:
 YY_RULE_SETUP
 #line 241 "lex.l"
-{ strcat(str, "\""); }
+{ strcat(str, "\\"); }
 	YY_BREAK
 case 172:
 YY_RULE_SETUP
 #line 242 "lex.l"
-{ strcat(str, "\'"); }
+{ strcat(str, "\""); }
 	YY_BREAK
 case 173:
 YY_RULE_SETUP
 #line 243 "lex.l"
-{ strcat(str, "\"\""); }
+{ strcat(str, "\'"); }
 	YY_BREAK
 case 174:
 YY_RULE_SETUP
 #line 244 "lex.l"
-{ strcat(str, "\"\"\""); }
+{ strcat(str, "\"\""); }
 	YY_BREAK
 case 175:
 YY_RULE_SETUP
@@ -2174,97 +2174,102 @@ YY_RULE_SETUP
 case 176:
 YY_RULE_SETUP
 #line 246 "lex.l"
-{ strcat(str, yytext); }
+{ strcat(str, "\"\"\""); }
 	YY_BREAK
 case 177:
 YY_RULE_SETUP
 #line 247 "lex.l"
-{ printf("Found MULTILINE_STRING: %s\n", str); BEGIN(INITIAL); }
-	YY_BREAK
-case YY_STATE_EOF(MULTILINE_STRING):
-#line 248 "lex.l"
-{ printf("MULTILINE_STRING ERROR in line %d: multiline string are not closed\n", multilineNumberBegin); BEGIN(INITIAL); }
+{ strcat(str, yytext); }
 	YY_BREAK
 case 178:
 YY_RULE_SETUP
-#line 251 "lex.l"
-{ stdstr = ""; BEGIN(STRING); }
+#line 248 "lex.l"
+{ printf("Found MULTILINE_STRING: %s\n", str); BEGIN(INITIAL); }
+	YY_BREAK
+case YY_STATE_EOF(MULTILINE_STRING):
+#line 249 "lex.l"
+{ printf("MULTILINE_STRING ERROR in line %d: multiline string are not closed\n", multilineNumberBegin); BEGIN(INITIAL); }
 	YY_BREAK
 case 179:
 YY_RULE_SETUP
 #line 252 "lex.l"
-{ stdstr += yytext; }
+{ stdstr = ""; BEGIN(STRING); }
 	YY_BREAK
 case 180:
-/* rule 180 can match eol */
 YY_RULE_SETUP
 #line 253 "lex.l"
-{ printf("STRING ERROR in line %d: unterminated string literal\n", lineNumber++); BEGIN(ERROR_ONELINE_STRING); }
+{ stdstr += yytext; }
 	YY_BREAK
 case 181:
+/* rule 181 can match eol */
 YY_RULE_SETUP
 #line 254 "lex.l"
-{ stdstr += "\n"; }
+{ printf("STRING ERROR in line %d: unterminated string literal\n", lineNumber++); BEGIN(ERROR_ONELINE_STRING); }
 	YY_BREAK
 case 182:
 YY_RULE_SETUP
 #line 255 "lex.l"
-{ stdstr += "\b"; }
+{ stdstr += "\n"; }
 	YY_BREAK
 case 183:
 YY_RULE_SETUP
 #line 256 "lex.l"
-{ stdstr += "\0"; }
+{ stdstr += "\b"; }
 	YY_BREAK
 case 184:
 YY_RULE_SETUP
 #line 257 "lex.l"
-{ stdstr += "\\"; }
+{ stdstr += "\0"; }
 	YY_BREAK
 case 185:
 YY_RULE_SETUP
 #line 258 "lex.l"
-{ stdstr += "\f"; }
+{ stdstr += "\\"; }
 	YY_BREAK
 case 186:
 YY_RULE_SETUP
 #line 259 "lex.l"
-{ stdstr += "\r"; }
+{ stdstr += "\f"; }
 	YY_BREAK
 case 187:
 YY_RULE_SETUP
 #line 260 "lex.l"
-{ stdstr += "\t"; }
+{ stdstr += "\r"; }
 	YY_BREAK
 case 188:
 YY_RULE_SETUP
 #line 261 "lex.l"
-{ stdstr += "\v"; }
+{ stdstr += "\t"; }
 	YY_BREAK
 case 189:
 YY_RULE_SETUP
 #line 262 "lex.l"
-{ stdstr += "\'"; }
+{ stdstr += "\v"; }
 	YY_BREAK
 case 190:
 YY_RULE_SETUP
 #line 263 "lex.l"
-{ stdstr += "\""; }
+{ stdstr += "\'"; }
 	YY_BREAK
 case 191:
 YY_RULE_SETUP
 #line 264 "lex.l"
-{ printf("STRING ERROR in line %d: unterminated string literal\n", lineNumber); BEGIN(INITIAL); }
+{ stdstr += "\""; }
 	YY_BREAK
 case 192:
-/* rule 192 can match eol */
 YY_RULE_SETUP
 #line 265 "lex.l"
-{ lineNumber++; }
+{ printf("STRING ERROR in line %d: unterminated string literal\n", lineNumber); BEGIN(INITIAL); }
 	YY_BREAK
 case 193:
+/* rule 193 can match eol */
 YY_RULE_SETUP
 #line 266 "lex.l"
+{ lineNumber++; }
+	YY_BREAK
+case 194:
+YY_RULE_SETUP
+#line 267 "lex.l"
 {
     char *a;
     int x = strtol(yytext + 3, &a, 16);
@@ -2274,37 +2279,37 @@ YY_RULE_SETUP
 		stdstr += buf;
  } 
 	YY_BREAK
-case 194:
+case 195:
 YY_RULE_SETUP
-#line 274 "lex.l"
+#line 275 "lex.l"
 { std::cout << "STRING: " << stdstr << std::endl; BEGIN(INITIAL); }
 	YY_BREAK
 case YY_STATE_EOF(STRING):
-#line 275 "lex.l"
+#line 276 "lex.l"
 { printf("Error in %d:  no closing quotation mark\n", lineNumber); BEGIN(INITIAL); }
 	YY_BREAK
-case 195:
+case 196:
 YY_RULE_SETUP
-#line 277 "lex.l"
+#line 278 "lex.l"
 {
 	removeChar(yytext, str, '_');
 	printf("DECIMAL_NUMBER: %d\n", atoi(str));
 }
 	YY_BREAK
-case 196:
-/* rule 196 can match eol */
-YY_RULE_SETUP
-#line 282 "lex.l"
-{ printf("BIN_NUMBER ERROR in line %d: is not a valid binary digit (0-1) in integer literal: %s\n", lineNumber, yytext); }
-	YY_BREAK
 case 197:
+/* rule 197 can match eol */
 YY_RULE_SETUP
 #line 283 "lex.l"
 { printf("BIN_NUMBER ERROR in line %d: is not a valid binary digit (0-1) in integer literal: %s\n", lineNumber, yytext); }
 	YY_BREAK
 case 198:
 YY_RULE_SETUP
-#line 285 "lex.l"
+#line 284 "lex.l"
+{ printf("BIN_NUMBER ERROR in line %d: is not a valid binary digit (0-1) in integer literal: %s\n", lineNumber, yytext); }
+	YY_BREAK
+case 199:
+YY_RULE_SETUP
+#line 286 "lex.l"
 {
 
     if(strlen(yytext) > 2)
@@ -2318,20 +2323,20 @@ YY_RULE_SETUP
     }
 }
 	YY_BREAK
-case 199:
-/* rule 199 can match eol */
-YY_RULE_SETUP
-#line 298 "lex.l"
-{ printf("OCT_NUMBER ERROR in line %d: is not a valid octal digit (0-7) in integer literal: %s\n", lineNumber, yytext); }
-	YY_BREAK
 case 200:
+/* rule 200 can match eol */
 YY_RULE_SETUP
 #line 299 "lex.l"
 { printf("OCT_NUMBER ERROR in line %d: is not a valid octal digit (0-7) in integer literal: %s\n", lineNumber, yytext); }
 	YY_BREAK
 case 201:
 YY_RULE_SETUP
-#line 301 "lex.l"
+#line 300 "lex.l"
+{ printf("OCT_NUMBER ERROR in line %d: is not a valid octal digit (0-7) in integer literal: %s\n", lineNumber, yytext); }
+	YY_BREAK
+case 202:
+YY_RULE_SETUP
+#line 302 "lex.l"
 {
 
     if(strlen(yytext) > 2)
@@ -2345,20 +2350,20 @@ YY_RULE_SETUP
     }
 }
 	YY_BREAK
-case 202:
-/* rule 202 can match eol */
-YY_RULE_SETUP
-#line 314 "lex.l"
-{ printf("HEX_NUMBER ERROR in line %d: is not a valid hexadecimal digit (0-9, A-F) in integer literal: %s\n", lineNumber, yytext); }
-	YY_BREAK
 case 203:
+/* rule 203 can match eol */
 YY_RULE_SETUP
 #line 315 "lex.l"
 { printf("HEX_NUMBER ERROR in line %d: is not a valid hexadecimal digit (0-9, A-F) in integer literal: %s\n", lineNumber, yytext); }
 	YY_BREAK
 case 204:
 YY_RULE_SETUP
-#line 317 "lex.l"
+#line 316 "lex.l"
+{ printf("HEX_NUMBER ERROR in line %d: is not a valid hexadecimal digit (0-9, A-F) in integer literal: %s\n", lineNumber, yytext); }
+	YY_BREAK
+case 205:
+YY_RULE_SETUP
+#line 318 "lex.l"
 {
 
     if(strlen(yytext) > 2)
@@ -2372,39 +2377,39 @@ YY_RULE_SETUP
     }
 }
 	YY_BREAK
-case 205:
-*yy_cp = (yy_hold_char); /* undo effects of setting up yytext */
-(yy_c_buf_p) = yy_cp -= 1;
-YY_DO_BEFORE_ACTION; /* set up yytext again */
-YY_RULE_SETUP
-#line 330 "lex.l"
-{ 
-	removeChar(yytext, str, '_');
-    printf("DECIMAL_FLOATINGPOINT_NUMBER: %f\n", atof(str));
-}
-	YY_BREAK
 case 206:
 *yy_cp = (yy_hold_char); /* undo effects of setting up yytext */
 (yy_c_buf_p) = yy_cp -= 1;
 YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
-#line 335 "lex.l"
+#line 331 "lex.l"
+{ 
+	removeChar(yytext, str, '_');
+    printf("DECIMAL_FLOATINGPOINT_NUMBER: %f\n", atof(str));
+}
+	YY_BREAK
+case 207:
+*yy_cp = (yy_hold_char); /* undo effects of setting up yytext */
+(yy_c_buf_p) = yy_cp -= 1;
+YY_DO_BEFORE_ACTION; /* set up yytext again */
+YY_RULE_SETUP
+#line 336 "lex.l"
 { 
 	removeChar(yytext, str, '_');
     printf("HEXADECIMAL_FLOATINGPOINT_NUMBER: %f\n", atof(str));
 }
 	YY_BREAK
-case 207:
-YY_RULE_SETUP
-#line 340 "lex.l"
-{ printf("Found IDENTIFIER: %s\n", yytext); }
-	YY_BREAK
 case 208:
 YY_RULE_SETUP
 #line 341 "lex.l"
+{ printf("Found IDENTIFIER: %s\n", yytext); }
+	YY_BREAK
+case 209:
+YY_RULE_SETUP
+#line 342 "lex.l"
 ECHO;
 	YY_BREAK
-#line 2407 "lex.yy.cpp"
+#line 2412 "lex.yy.cpp"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(CHAR):
 case YY_STATE_EOF(ERROR_ONELINE_STRING):
@@ -3412,7 +3417,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 341 "lex.l"
+#line 342 "lex.l"
 
 
 void convertCharacterCodeToString(char charCode[], int pos, char *str)

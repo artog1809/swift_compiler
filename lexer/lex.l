@@ -197,6 +197,7 @@ willSet {printf("(%s) - WILLSET_KEY_WORD\n", yytext);}
 "..." { printf("Found OPERATOR_CLOSED_RANGE: %s\n", yytext); }
 "..<" { printf("Found OPERATOR_HALF_OPEN_RANGE: %s\n", yytext); }
 
+"?" { printf("Fount TERNARY_OPERATOR_TRUE: %s\n", yytext);}
 ":" { printf("Found OPERATOR_COLON: %s\n", yytext); }
 "->" { printf("Fount OPERATOR_RETURN_VALUE: %s\n", yytext); }
 
