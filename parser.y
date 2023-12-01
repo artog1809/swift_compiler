@@ -28,7 +28,7 @@
 %token FUNC
 
 %token INT
-%token TRUE FALSE
+%token BOOL
 %token STRING
 %token FLOAT
 %token DOUBLE
@@ -41,21 +41,22 @@
 
 
 %token ID
-
+%nonassoc ENDL
 
 %nonassoc INCREMENT DECREMENT
-%nonassoc '{' ':'
+%nonassoc '{' ':' '}'
 %right '=' PLUS_ASSIGNMENT MINUS_ASSIGNMENT MUL_ASSIGNMENT DIV_ASSIGNMENT MOD_ASSIGNMENT
 %left '[' ']'
+%left OPERATOR_RETURN_VALUE
 %left OR
 %left AND
 %left EQUAL NOT_EQUAL
-%left '>' '<' GREATER_EQUAL LESS_EQUAL 
+%left '>' '<' GREATER_EQUAL LESS_EQUAL IS AS
 %left IN
 %left RANGE
 %left '+' '-'
 %left '*' '/' '%'
-%left UMINUS UPLUS
+%left NOT UMINUS UPLUS
 %right PREF_INCREMENT PREF_DECREMENT '!'
 %left POST_INCREMENT POST_DECREMENT '.'
 %nonassoc '(' ')'
@@ -63,13 +64,95 @@
 %start program
 
 %%
+program: programElem
+    | program programElem
+    ;
 
+programElem: classDeclaration
+    | functionDeclaration
+    ;
+
+endl: ENDL
+    | endl ENDL
+    ;
+
+endlOpt: /* empty */
+    | endl
+    ;
+
+exprList: expr
+    | exprList endlOpt ',' endlOpt expr
+    ;
+
+exprtListOpt: /* empty */
+    | exprList
+    ;
+
+expr: expr POST_DECREMENT
+    | PREF_DECREMENT endlOpt expr
+    | expr POST_INCREMENT
+    | PREF_INCREMENT endlOpt expr 
+    | ID AS endlOpt type
+    | '-' endlOpt expr %prec UMINUS
+    | '+' endlOpt expr %prec UPLUS
+    | INT_LITERAL
+    | FLOAT_LITERAL
+    | DOUBLE_LITERAL
+    | STRING_LITERAL
+    | TRUE_LITERAL
+    | FALSE_LITERAL
+    | ID
+    | '(' endlOpt expr endlOpt ')'
+    | ID endlOpt '(' endlOpt exprtListOpt ')'
+    | expr '+' endlOpt expr
+    | expr '-' endlOpt expr 
+    | expr '*' endlOpt expr 
+    | expr '/' endlOpt expr
+    | expr '%' endlOpt expr
+    | expr '<' endlOpt expr
+    | expr '>' endlOpt expr 
+    | expr LESS_EQUAL endlOpt expr
+    | expr GREATER_EQUAL endlOpt expr 
+    | expr EQUAL endlOpt expr
+    | expr NOT_EQUAL endlOpt expr
+    | expr '=' endlOpt expr
+    | expr PLUS_ASSIGNMENT endlOpt expr
+    | expr MINUS_ASSIGNMENT endlOpt expr
+    | expr MUL_ASSIGNMENT endlOpt expr
+    | expr DIV_ASSIGNMENT endlOpt expr
+    | expr MOD_ASSIGNMENT endlOpt expr
+    | NOT endlOpt expr
+    | expr AND endlOpt expr
+    | expr OR endlOpt expr
+    | expr '?' endlOpt expr endlOpt ':' endlOpt expr
+    | expr '[' endlOpt expr endlOpt ']'
+    | expr '.' endlOpt ID endlOpt '(' endlOpt expr exprtListOpt ')'
+    | expr '.' endlOpt ID
+    ;
+
+
+switchStmt: SWITCH endlOpt '(' endlOpt expr endlOpt ')' endlOpt '{' endlOpt caseList '}'
+    ;
+
+caseList: caseStmt
+        | caseList caseStmt
+        ;
+
+caseStmt: CASE endlOpt expr endlOpt ':' endlOpt stmtListOpt breakOpt
+        | DEFAULT endlOpt ':' endlOpt stmtListOpt breakOpt
+        ;
+
+breakOpt: /* empty */
+        | BREAK endlOpt
+        ;
+
+returnStatement: RETURN expr endlOpt
+    ;
+
+type: INT 
+    | BOOL
+    | STRING
+    | FLOAT
+    | DOUBLE
+    ;
 %%
-
-
-
-
-
-
-
-
