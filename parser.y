@@ -6,7 +6,6 @@
 %token RETURN
 
 %token REPEAT
-%token REPEAT
 %token IF
 %token ELSE
 %token FOR
@@ -66,8 +65,9 @@ program: programElem
     | program programElem
     ;
 
-programElem: classDeclaration
-    | functionDeclaration
+programElem: stmt
+    // |  classDeclaration
+    /* | functionDeclaration */
     ;
 
 endl: ENDL
@@ -82,8 +82,7 @@ exprList: expr
     | exprList endlOpt ',' endlOpt expr
     ;
 
-exprtListOpt: /* empty */
-    | exprList
+exprtListOpt: /* empty |*/ exprList
     ;
 
 expr: expr POST_DECREMENT
@@ -99,7 +98,7 @@ expr: expr POST_DECREMENT
     | STRING_LITERAL
     | TRUE_LITERAL
     | FALSE_LITERAL
-    | ID
+    | ID endlOpt
     | '(' endlOpt expr endlOpt ')'
     | ID endlOpt '(' endlOpt exprtListOpt ')'
     | expr '+' endlOpt expr
@@ -128,11 +127,30 @@ expr: expr POST_DECREMENT
     | expr '.' endlOpt ID
     ;
 
-stmtListOpt: /* empty */
-| stmtList endlOpt
+stmtListOpt: /* empty | */
+ stmtList endlOpt
 ;
 
-blockStatement: '{' endlOpt stmtListOpt '}'
+stmtList: stmt 
+    | stmtList stmt
+    ;
+
+stmt: expr endl
+    | ifStmt
+    | whileStmt
+    | forInStmt
+    | repeatWhileStmt
+    | switchStmt
+    | blockStatement
+    | returnStatement
+    | modifier endlOpt 
+    ;
+
+modifier: LET
+    | VAR
+    ;
+
+blockStatement: '{' endlOpt stmtListOpt endlOpt '}'
 ;
 
 ifStmt: IF endlOpt '(' endlOpt expr endlOpt ')' endlOpt blockStatement
@@ -147,8 +165,8 @@ whileStmt: WHILE endlOpt '(' endlOpt expr endlOpt ')' endlOpt blockStatement
 
 repeatWhileStmt: REPEAT endlOpt '(' endlOpt blockStatement endlOpt ')' endlOpt WHILE endlOpt '(' endlOpt expr endlOpt ')'
 | REPEAT endlOpt '(' endlOpt blockStatement endlOpt ')' endlOpt WHILE endlOpt expr 
-| REPEAT endlOpt blockStatement endlOpt WHILE endlOpt '(' endlOpt expr endlOpt ')'
-| REPEAT endlOpt blockStatement endlOpt WHILE endlOpt expr 
+/*| REPEAT endlOpt blockStatement endlOpt WHILE endlOpt '(' endlOpt expr endlOpt ')'*/
+/*| REPEAT endlOpt blockStatement endlOpt WHILE endlOpt expr */
 ;
 
 forInStmt: FOR endlOpt expr endlOpt IN endlOpt expr endlOpt blockStatement
@@ -168,8 +186,7 @@ caseStmt: CASE endlOpt expr endlOpt ':' endlOpt stmtListOpt breakOpt
         | DEFAULT endlOpt ':' endlOpt stmtListOpt breakOpt
         ;
 
-breakOpt: /* empty */
-        | BREAK endlOpt
+breakOpt: /* empty | */ BREAK endlOpt
         ;
 
 returnStatement: RETURN expr endlOpt
